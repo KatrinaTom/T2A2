@@ -10,6 +10,8 @@ Project: An admin portal for a start up Landscaping Business.
 
 3. [Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
 
+4. [Github](git@github.com:KatrinaTom/t2a2.git)
+
 ____________________________________
 
 ## Table of Contents
@@ -97,7 +99,6 @@ I want to create a admin portal for a Landscaping business
 
 So that I can track customers, jobs and invoicing"
 
-_
 
 ## Requirement 2<a name="req2"></a>
 **Why is it a problem that needs solving?**
@@ -126,7 +127,6 @@ Already from the list above, if this was done manually, it would create human er
 
 This is a problem I want to solve as a future business owner that expects this business to grow successfully and ensure privacy/security of data.
 
-_
 
 ## Requirement 3<a name="req3"></a>
 **Why have you chosen this database system. What are the drawbacks compared to others?**
@@ -145,7 +145,6 @@ Image from Medium, 2020, "Document vs Relational Databases"
 
 However there are more advantages in this case to use a Relational Database Management System than any other database management system due the nature of the data for this project.
 
-_
 
 ## Requirement 4<a name="req4"></a>
 **Identify and discuss the key functionalities and benefits of an ORM**
@@ -162,7 +161,6 @@ Benefits of an ORM are:
   
 In this project, the ORM we will be using is **SQLAlchemy**.
 
-_
 
 ## Requirement 5<a name="req5"></a>
 **Document all endpoints for your API**
@@ -175,17 +173,11 @@ _
 ## Requirement 6<a name="req6"></a>
 **An ERD for your app**
 
-![Entity Relational Diagram of Landscaping ADMIN database](images/Landscaping_T2A2.png)
-_
+Entities is an object or concept about which you want to store information and that is to be represented in the database.
 
+Below is the Entity Relational Diagram demonstrating the entity relationships.
 
-## Requirement 7<a name="req7"></a>
-**Detail any third party services that your app will use**
-
-_
-
-## Requirement 8<a name="req8"></a>
-**Describe your projects models in terms of the relationships they have with each other**
+![Entity Relational Diagram of Landscaping ADMIN database](images/Landscaping_T2A2-2.png)
 
 Cardinality defines the numerical attributes of the relationship between two entities.
 
@@ -194,6 +186,8 @@ Different types of cardinal relationships are:
 * One-to-Many Relationships
 * Many-to-Many Relationships
 
+In the above screenshot, the number 1 indicates a one to many relationship where the "M" displays.
+
 **Cardinality**
 
 1. Customers book a Service
@@ -201,7 +195,7 @@ Different types of cardinal relationships are:
 - A customer can request multiple quotes, or have a quote and a job in progress or completed.
 - There can only be one Reference of a job per customer
 
-2. Service (lawn care/garden care) belong to a Reference of a Job
+2. Service_Type (lawn care/garden care) belong to a Reference of a Job
 - A Service belongs to a Reference of the Job (For the customer). 
 - A customer can requesr lawn care and or garden care.
 - One to many (One service (lawn care and or garden care) on the Reference of the job, otherwise it becomes another job.
@@ -214,6 +208,35 @@ Different types of cardinal relationships are:
 - An Employee belongs to a Reference of a job. 
 - An employee can have a many-to-many relationship with reference of a job.
 - An employee can quote a job and own that reference, they can be in progress of a job and then can have completed a job.
+
+
+## Requirement 7<a name="req7"></a>
+**Detail any third party services that your app will use**
+
+_
+
+## Requirement 8<a name="req8"></a>
+**Describe your projects models in terms of the relationships they have with each other**
+
+Database Modeling
+
+The second step of the database creation is the relational model. Transforming the ERD into tables so that we can create the database.
+
+Each entity is going to be a table in the database and entity attributes are going to be the columns of that table.
+
+**CUSTOMERS**(__customer_id__, first_name, last_name, address, phone_number, email)
+
+**EMPLOYEES**(__employee_id__, first_name, last_name, address, phone_number, email)
+
+**JOB_REFERENCE**(__reference_id__, service_date, employee_id, service_type, customer_id,reference_status)
+
+**REFERENCE_STATUS**(__reference_status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
+
+**SERVICE_TYPE**(__service_type_id__, name, description, size, price)
+
+![Database Modelling on Lanscape Business](images/Database_Modelling.png)
+
+
 _
 
 ## Requirement 9<a name="req9"></a>
@@ -256,6 +279,8 @@ _
 To understand the database, I looked at the customer experience and the ADMIN portal experience. Below is a screenshot of the User Story Mapping.
 
 ![Entity Relational Diagram of Landscaping ADMIN database](images/Story_Mapping.png)
+
+[Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
 
 
 # Development
