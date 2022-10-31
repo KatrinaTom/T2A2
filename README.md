@@ -33,6 +33,7 @@ With the use of Trello, the project is tracked in Phases
 * [Requirement 8](#req8)
 * [Requirement 9](#req9)
 * [Requirement 10](#req10)
+* [User Story Mapping - Customer Journey](#journey)
 
 [Phase 2: Software Development Plan](#phase2)
 1. Overview of Project
@@ -174,7 +175,7 @@ _
 ## Requirement 6<a name="req6"></a>
 **An ERD for your app**
 
-![Entity Relational Diagram of Landscaping ADMIN database](Assignments/T2A2-API/images/Landscaping_T2A2.png)
+![Entity Relational Diagram of Landscaping ADMIN database](images/Landscaping_T2A2.png)
 _
 
 
@@ -247,8 +248,14 @@ Columns in Trello:
 * In Progress: Actively working on the card in this column, to complete the acceptance criteria.
 * Testing: During development, Test Driven Development is considered. The development cards include the testing so that it is a continuous process. Including unit testing and end to end testing manually as a sanity check/ regression testing.
 * Completed/Done: All acceptance criteria in the card is marked as completed, then the card can be moved to this column and progress tracked.
-
+  
 _ 
+
+## Story Mapping - Customer Journey<a name="journey"></a>
+
+To understand the database, I looked at the customer experience and the ADMIN portal experience. Below is a screenshot of the User Story Mapping.
+
+![Entity Relational Diagram of Landscaping ADMIN database](images/Story_Mapping.png)
 
 
 # Development
