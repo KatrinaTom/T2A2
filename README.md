@@ -39,7 +39,7 @@ With the use of Trello, the project is tracked in Phases
 [Phase 2: Software Development Plan](#phase2)
 
 1. [Database Creation](#database)
-2. Set Up (incl. Third Party Dependencies)
+2. [Set Up (incl. Third Party Dependencies)](#setup)
 3. Development
 4. CRUD (Create, Read, Update, Delete)
 5. Authorisation and Authentication
@@ -208,14 +208,14 @@ In the above screenshot, the number 1 indicates a one to many relationship where
 ## Requirement 8<a name="req8"></a>
 **Describe your projects models in terms of the relationships they have with each other**
 
-
+...
 
 ## Requirement 9<a name="req9"></a>
 **Discuss the database relations to be implemented in your application**
 
 Database Modeling
 
-The second step of the database creation is the relational model. Transforming the ERD into tables so that we can create the database.
+The second step of the database creation is the relational model. Transforming the ERD into tables so that the database can be created.
 
 Each entity is going to be a table in the database and entity attributes are going to be the columns of that table.
 
@@ -291,6 +291,8 @@ An overview of this project is that it focuses on using the following:
 * Database Modelling as seen in [Requirement 9](#req9). Transforming the concepts from the inital ERD into a database model and expressing relationships and required information.
 * Practice Data Normalisation to avoid data redundancy.
 * Relational Database, use of PostgreSQL and create tables with SQL.
+* Data Manipulation, SQL insert, simple queries, delete, update, alter tables
+* Flask - web framework for making a web application (serve requests and responses)
 
 ## Database Creation<a name="database"></a>
 
@@ -316,6 +318,8 @@ Connect to database
 
 Create Tables
 
+Example in SQL
+
 **USERS**(__user_id__, type, first_name, last_name, address, phone_number, email)
 
 ```CREATE TABLE USERS (
@@ -332,18 +336,23 @@ user_email text NOT NULL);
 ADD PRIMARY KEY user_id;
 ```
 
-**JOB_REFERENCE**(__reference_id__, start_date, end_date, user_id, service_request_id, units_hours, status_id, description)
+## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
 
-**STATUS**(__status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
+Create a virtual environment and activate it
 
-**SERVICES**(__service_type_id__, name, description, size, price)
+```python3 -m venv .venv && source .venv/bin/activate```
 
-**SERVICE_REQUEST**(__service_request_id__, services_id, jo_reference_id, quoted_price, units_hours)
+Great a gitignore folder, main.py filder and a requirements.txt file
 
-1. Set Up (incl. Third Party Dependencies)
-2. Development
-3. CRUD (Create, Read, Update, Delete)
-4. Authorisation and Authentication
-5. Validation and Error Handling
-6. Testing
-7. Deployment
+Install Flask
+
+```pip3 install flask```
+
+Set up a basic Flask app in the main.py file. 
+
+1. Development
+2. CRUD (Create, Read, Update, Delete)
+3. Authorisation and Authentication
+4. Validation and Error Handling
+5. Testing
+6. Deployment
