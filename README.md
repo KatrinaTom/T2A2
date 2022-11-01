@@ -206,6 +206,11 @@ In the above screenshot, the number 1 indicates a one to many relationship where
 ## Requirement 8<a name="req8"></a>
 **Describe your projects models in terms of the relationships they have with each other**
 
+
+
+## Requirement 9<a name="req9"></a>
+**Discuss the database relations to be implemented in your application**
+
 Database Modeling
 
 The second step of the database creation is the relational model. Transforming the ERD into tables so that we can create the database.
@@ -214,24 +219,25 @@ Each entity is going to be a table in the database and entity attributes are goi
 
 **USERS**(__user_id__, type, first_name, last_name, address, phone_number, email)
 
-**JOB_REFERENCE**(__reference_id__, start_date, end_date, user_id, service_type_id, units_hours, status_id, description)
+**JOB_REFERENCE**(__reference_id__, start_date, end_date, user_id, service_request_id, units_hours, status_id, description)
 
 **STATUS**(__status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
 
-**SERVICE_TYPE**(__service_type_id__, name, description, size, price)
+**SERVICES**(__service_type_id__, name, description, size, price)
 
-![Database Modelling on Lanscape Business](images/Database_Modelling1.png)
+**SERVICE_REQUEST**(__service_request_id__, services_id, jo_reference_id, quoted_price, units_hours)
+
+![Database Model including relationships with attributes](images/Database_Model.png)
 
 The above image incorporates the practice of Normalisation to avoid data redundancy or duplicated data.
 
 "Normalisation is a technique for organising data in a database."
 
-Data has been separated into relevant and seperate tables, which are then related by keys. Such as Primary Keys (can only be one per table) and Foreign Keys that link to other tables. Including a column to show the attribute types.
+Data has been separated into relevant and seperate tables, which are then related by keys. Such as Primary Keys (can only be one per table) and Foreign Keys that link to other tables.
 
-## Requirement 9<a name="req9"></a>
-**Discuss the database relations to be implemented in your application**
+Including a column to show the attribute types. It is a combination of Integers and Strings.
 
-_
+In the above image, Crows Foot Notationw as used to demonstrate the relationship between the entities.
 
 ## Requirement 10<a name="req10"></a>
 **Describe the way tasks are allocated and tracked in your project**
