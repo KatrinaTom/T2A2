@@ -8,7 +8,7 @@ Project: An admin portal for a start up Landscaping Business.
 
 3. [Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
 
-4. [Github](git@github.com:KatrinaTom/t2a2.git)
+4. [Github](https://github.com/KatrinaTom/T2A2)
 
 ____________________________________
 
@@ -40,7 +40,7 @@ With the use of Trello, the project is tracked in Phases
 
 1. [Database Creation](#database)
 2. [Set Up (incl. Third Party Dependencies)](#setup)
-3. Development
+3. [Development](#development)
 4. CRUD (Create, Read, Update, Delete)
 5. Authorisation and Authentication
 6. Validation and Error Handling
@@ -348,11 +348,14 @@ Install Flask
 
 ```pip3 install flask```
 
-Set up a basic Flask app in the main.py file. 
+Set up a basic Flask app in the main.py file and test that initially it works.
 
-1. Development
-2. CRUD (Create, Read, Update, Delete)
-3. Authorisation and Authentication
-4. Validation and Error Handling
-5. Testing
-6. Deployment
+## Development<a name="development"></a>
+
+...
+
+1. CRUD (Create, Read, Update, Delete)
+2. Authorisation and Authentication
+3. Validation and Error Handling
+4. Testing
+5. Deployment
