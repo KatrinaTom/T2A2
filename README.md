@@ -134,7 +134,7 @@ However without reviewing other types of databases I wouldn’t have been able t
 
 A comparison between a Relational Database Management System and a Non-Relational Database Management System, the only drawback I could find is the potential complexity of a relational database. Especially when it comes to storing data in a tabular form, which can make it difficult to represent complex relationships between objects.
 
-![Comparing Relational Database Management Systems](/images/DBMS_Compare.png)
+![Comparing Relational Database Management Systems](docs/images/DBMS_Compare.png)
 
 Image from Medium, 2020, "Document vs Relational Databases"
 
@@ -167,7 +167,7 @@ Entities is an object or concept about which you want to store information and t
 
 Below is the Entity Relational Diagram demonstrating the entity relationships. This is the first attempt before Normalisation.
 
-![Entity Relational Diagram of Landscaping ADMIN database](images/Landscaping_T2A2-2.png)
+![Entity Relational Diagram of Landscaping ADMIN database](docs/images/Landscaping_T2A2-2.png)
 
 Cardinality defines the numerical attributes of the relationship between two entities.
 
@@ -229,7 +229,7 @@ Each entity is going to be a table in the database and entity attributes are goi
 
 **SERVICE_REQUEST**(__service_request_id__, services_id, jo_reference_id, quoted_price, units_hours)
 
-![Database Model including relationships with attributes](images/Database_Model.png)
+![Database Model including relationships with attributes](docs/images/Database_Model.png)
 
 The above image incorporates the practice of Normalisation to avoid data redundancy or duplicated data.
 
@@ -273,7 +273,7 @@ Columns in Trello:
 
 To understand the database, I looked at the customer experience and the ADMIN portal experience. Below is a screenshot of the User Story Mapping.
 
-![Entity Relational Diagram of Landscaping ADMIN database](images/Story_Mapping.png)
+![Entity Relational Diagram of Landscaping ADMIN database](docs/images/Story_Mapping.png)
 
 [Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
 
