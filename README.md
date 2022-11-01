@@ -34,9 +34,11 @@ With the use of Trello, the project is tracked in Phases
 * [Requirement 9](#req9)
 * [Requirement 10](#req10)
 
+[User Story Mapping - Customer Journey](#journey)
+
 [Phase 2: Software Development Plan](#phase2)
-1. Overview of Project
-* [User Story Mapping - Customer Journey](#journey)
+
+1. [Database Creation](#database)
 2. Set Up (incl. Third Party Dependencies)
 3. Development
 4. CRUD (Create, Read, Update, Delete)
@@ -235,7 +237,7 @@ The above image incorporates the practice of Normalisation to avoid data redunda
 
 Data has been separated into relevant and seperate tables, which are then related by keys. Such as Primary Keys (can only be one per table) and Foreign Keys that link to other tables.
 
-Including a column to show the attribute types. It is a combination of Integers and Strings.
+Including a column to show the attribute types. It is a combination of Integers, Strings, Boolean values and character limits. This is to ensure data integrity by adding in constraints such as Not Null. 
 
 In the above image, Crows Foot Notationw as used to demonstrate the relationship between the entities.
 
@@ -266,15 +268,6 @@ Columns in Trello:
 * In Progress: Actively working on the card in this column, to complete the acceptance criteria.
 * Testing: During development, Test Driven Development is considered. The development cards include the testing so that it is a continuous process. Including unit testing and end to end testing manually as a sanity check/ regression testing.
 * Completed/Done: All acceptance criteria in the card is marked as completed, then the card can be moved to this column and progress tracked.
-  
-_ 
-
-
-
-
-# Development
-
-## Phase 2: Software Development Plan<a name="phase2"></a>
 
 ## Story Mapping - Customer Journey<a name="journey"></a>
 
@@ -283,3 +276,74 @@ To understand the database, I looked at the customer experience and the ADMIN po
 ![Entity Relational Diagram of Landscaping ADMIN database](images/Story_Mapping.png)
 
 [Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
+
+____________________________________
+  
+# Development
+
+## Phase 2: Software Development Plan<a name="phase2"></a>
+
+An overview of this project is that it focuses on using the following:
+
+* Database Management System (DBMS)
+* Structured Query Language (SQL), Data Definition Lanauge (DDL) Data Manipulation Language (DML) that will run SQL queries. Data Control Language (DCL)
+* Entity Relationship Diagram as seen in [Requirement 6](#req6). The first step in understanding the entities, attributes, relationships and cardinality
+* Database Modelling as seen in [Requirement 9](#req9). Transforming the concepts from the inital ERD into a database model and expressing relationships and required information.
+* Practice Data Normalisation to avoid data redundancy.
+* Relational Database, use of PostgreSQL and create tables with SQL.
+
+## Database Creation<a name="database"></a>
+
+Check for PostgreSQL
+
+```postgres --version```
+
+Access PostgreSQL
+
+```psql```
+
+Database Creation.
+
+```CREATE DATABASE landscaping_admin_db;```
+
+Check the list of databases
+
+```\l```
+
+Connect to database
+
+```\c landscaping_admin_db```
+
+Create Tables
+
+**USERS**(__user_id__, type, first_name, last_name, address, phone_number, email)
+
+```CREATE TABLE USERS (
+user_id integer PRIMARY KEY,
+user_type text NOT NULL,
+user_first_name text NOT NULL,
+user_last_name text NOT NULL,
+user_address text NOT NULL,
+user_phone_number integer NOT NULL,
+user_email text NOT NULL);
+```
+
+```ALTER TABLE USERS
+ADD PRIMARY KEY user_id;
+```
+
+**JOB_REFERENCE**(__reference_id__, start_date, end_date, user_id, service_request_id, units_hours, status_id, description)
+
+**STATUS**(__status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
+
+**SERVICES**(__service_type_id__, name, description, size, price)
+
+**SERVICE_REQUEST**(__service_request_id__, services_id, jo_reference_id, quoted_price, units_hours)
+
+1. Set Up (incl. Third Party Dependencies)
+2. Development
+3. CRUD (Create, Read, Update, Delete)
+4. Authorisation and Authentication
+5. Validation and Error Handling
+6. Testing
+7. Deployment
