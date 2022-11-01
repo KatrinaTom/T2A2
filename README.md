@@ -1,10 +1,8 @@
 # T2A2 - API Webserver Project
 
-
 Project: An admin portal for a start up Landscaping Business.
 
 1. [Link to Project Documentation](https://docs.google.com/document/d/1_dzeT4baEx9C4u5cQbMgJiJ_pbRsguKYKNvxqlA5ojc/edit?usp=sharing)
-
 
 2. [Link to Project Tracking (Trello)](https://trello.com/invite/b/06cHHz3x/ATTI6045b9cf1328ade946408c89e0871c76D3A87865/api-web-server-project)
 
@@ -18,7 +16,7 @@ ____________________________________
 
 ### Project Overview 
 * [Introduction](#introduction)
-* [Brief](#brief) 
+* [Brief](#brief)
 
 ### Project Planning
 With the use of Trello, the project is tracked in Phases
@@ -35,23 +33,21 @@ With the use of Trello, the project is tracked in Phases
 * [Requirement 8](#req8)
 * [Requirement 9](#req9)
 * [Requirement 10](#req10)
-* [User Story Mapping - Customer Journey](#journey)
 
 [Phase 2: Software Development Plan](#phase2)
 1. Overview of Project
+* [User Story Mapping - Customer Journey](#journey)
 2. Set Up (incl. Third Party Dependencies)
 3. Development
 4. CRUD (Create, Read, Update, Delete)
 5. Authorisation and Authentication
 6. Validation and Error Handling
-7. Testing 
-8. Deployment 
-
+7. Testing
+8. Deployment
 
 ### Resources
 * Important Links
 * References
-
 
 ____________________________________
 
@@ -72,7 +68,6 @@ ____________________________________
 
 # Project Planning
 [Link to Project Tracking (Trello)](https://trello.com/invite/b/06cHHz3x/ATTI6045b9cf1328ade946408c89e0871c76D3A87865/api-web-server-project)
-
 
 ## Phase 1: Design of Database<a name="phase1"></a>
 
@@ -99,12 +94,11 @@ I want to create a admin portal for a Landscaping business
 
 So that I can track customers, jobs and invoicing"
 
-
 ## Requirement 2<a name="req2"></a>
 **Why is it a problem that needs solving?**
 
 There are other methods to start a customer database, however I can imagine it would create more problems in the future as the business grows.
-If I did not create a database, It would be difficult to expand. Such as tracking customers, add staff and invoicing would be very difficult and time consuming. 
+If I did not create a database, It would be difficult to expand. Such as tracking customers, add staff and invoicing would be very difficult and time consuming.
 
 To make sure I am on the right track that this is a problem that needs solving, I asked myself (as the potential business owner) the following question:
 
@@ -127,7 +121,6 @@ Already from the list above, if this was done manually, it would create human er
 
 This is a problem I want to solve as a future business owner that expects this business to grow successfully and ensure privacy/security of data.
 
-
 ## Requirement 3<a name="req3"></a>
 **Why have you chosen this database system. What are the drawbacks compared to others?**
 
@@ -145,7 +138,6 @@ Image from Medium, 2020, "Document vs Relational Databases"
 
 However there are more advantages in this case to use a Relational Database Management System than any other database management system due the nature of the data for this project.
 
-
 ## Requirement 4<a name="req4"></a>
 **Identify and discuss the key functionalities and benefits of an ORM**
 
@@ -161,21 +153,17 @@ Benefits of an ORM are:
   
 In this project, the ORM we will be using is **SQLAlchemy**.
 
-
 ## Requirement 5<a name="req5"></a>
 **Document all endpoints for your API**
 
-
-
-_
-
+...
 
 ## Requirement 6<a name="req6"></a>
 **An ERD for your app**
 
 Entities is an object or concept about which you want to store information and that is to be represented in the database.
 
-Below is the Entity Relational Diagram demonstrating the entity relationships.
+Below is the Entity Relational Diagram demonstrating the entity relationships. This is the first attempt before Normalisation.
 
 ![Entity Relational Diagram of Landscaping ADMIN database](images/Landscaping_T2A2-2.png)
 
@@ -213,7 +201,7 @@ In the above screenshot, the number 1 indicates a one to many relationship where
 ## Requirement 7<a name="req7"></a>
 **Detail any third party services that your app will use**
 
-_
+...
 
 ## Requirement 8<a name="req8"></a>
 **Describe your projects models in terms of the relationships they have with each other**
@@ -224,20 +212,21 @@ The second step of the database creation is the relational model. Transforming t
 
 Each entity is going to be a table in the database and entity attributes are going to be the columns of that table.
 
-**CUSTOMERS**(__customer_id__, first_name, last_name, address, phone_number, email)
+**USERS**(__user_id__, type, first_name, last_name, address, phone_number, email)
 
-**EMPLOYEES**(__employee_id__, first_name, last_name, address, phone_number, email)
+**JOB_REFERENCE**(__reference_id__, start_date, end_date, user_id, service_type_id, units_hours, status_id, description)
 
-**JOB_REFERENCE**(__reference_id__, service_date, employee_id, service_type, customer_id,reference_status)
-
-**REFERENCE_STATUS**(__reference_status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
+**STATUS**(__status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
 
 **SERVICE_TYPE**(__service_type_id__, name, description, size, price)
 
-![Database Modelling on Lanscape Business](images/Database_Modelling.png)
+![Database Modelling on Lanscape Business](images/Database_Modelling1.png)
 
+The above image incorporates the practice of Normalisation to avoid data redundancy or duplicated data.
 
-_
+"Normalisation is a technique for organising data in a database."
+
+Data has been separated into relevant and seperate tables, which are then related by keys. Such as Primary Keys (can only be one per table) and Foreign Keys that link to other tables. Including a column to show the attribute types.
 
 ## Requirement 9<a name="req9"></a>
 **Discuss the database relations to be implemented in your application**
@@ -274,6 +263,13 @@ Columns in Trello:
   
 _ 
 
+
+
+
+# Development
+
+## Phase 2: Software Development Plan<a name="phase2"></a>
+
 ## Story Mapping - Customer Journey<a name="journey"></a>
 
 To understand the database, I looked at the customer experience and the ADMIN portal experience. Below is a screenshot of the User Story Mapping.
@@ -281,9 +277,3 @@ To understand the database, I looked at the customer experience and the ADMIN po
 ![Entity Relational Diagram of Landscaping ADMIN database](images/Story_Mapping.png)
 
 [Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
-
-
-# Development
-
-## Phase 2: Software Development Plan<a name="phase2"></a>
-
