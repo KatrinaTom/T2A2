@@ -149,6 +149,9 @@ Even though there is still a need for a fundamental understanding of SQL and dat
 
 Benefits of an ORM are:
 
+* Works with Python objects
+* Allows you to switch your database easily
+* Allows you to control the structure of your datbase from your code, which can be managed by revision control system like Git.
 * That you can write in your chosen programming language. In this case using Python as the Programming Language.
 * Abstracts away from the database system so that there is no need to switch from MySQL to PostgreSQL.
 * There are a lot of advanced features that support transactions, connection pooling, migratations, and seeds as an example.
@@ -316,7 +319,17 @@ Connect to database
 
 ```\c landscaping_admin_db```
 
-Create Tables
+Database connection
+
+```pip3 install psycopg2```
+
+```pip3 install flask-SQLAlchemy```
+
+Configure in main.py
+
+...
+
+Create a Model
 
 Example in SQL
 
@@ -351,6 +364,12 @@ Install Flask
 Set up a basic Flask app in the main.py file and test that initially it works.
 
 ## Development<a name="development"></a>
+
+1. Using an ORM - Install Flask-SQLAlchemy
+
+```pip3 install Flask-SQLAlchemy```
+
+
 
 ...
 
