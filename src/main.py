@@ -1,10 +1,12 @@
 # List of all the imports. Main working file is main.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 import os
 
 # Create the database object
 db = SQLAlchemy()
+ma =  Marshmallow()
 
 def create_app():
 
@@ -16,6 +18,9 @@ def create_app():
 
     # Creating the dataase object. This is to use the our own ORM
     db.init_app(app)
+
+    # Hooking up Marshmallow to the app
+    ma.init_app(app)
 
     # importing the controllers and acticate the blueprints
     from controllers import registerable_controllers
