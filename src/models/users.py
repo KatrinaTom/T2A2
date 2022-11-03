@@ -2,6 +2,8 @@ from main import db
 
 # Database model - Users Table
 
+# Note: "Type" refers to Employee or Customer
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -14,3 +16,4 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
 
     # job_references = db.relationship('Job_Reference', back_populates='users')
+

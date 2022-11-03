@@ -401,21 +401,24 @@ Set up a basic Flask app in the main.py file and test that initially it works.
 
 ## Development<a name="development"></a>
 
-From the steps above, a virtual environment is set up and the environmental variables are configured correctly.
+From the steps above, a virtual environment is set up. 
 
-This will display in the .flaskenv file
+The environmental variables are configured in the .env file with the database url from postgreSQL connection. The example file is named .env.sample
+
+Flask will run with the details updated in the .flaskenv file.
 
 ```
 FLASK_APP=main
 FLASK_DEBUG=True
 ```
 
-Next is setting up a .env file with the database url from postgreSQL connection. The same file is named .env.sample
-
 Using MVC (Model-View-Controller) architectural pattern, the next steps are to set up:
 
 * Models Folder
 * Controllers Folder
+* Update main.py with the objects and controllers
+* Create Blueprint and objects
+* Connecting Marshmallow
 
 "Purpose of a MVC Framework helps to seperate the different aspects of the application (input logic, business logic and GUI), while providing a loose coupling between these elements. This seperation helps to manage the complexity of the application."
 
