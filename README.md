@@ -157,7 +157,9 @@ Benefits of an ORM are:
 * Abstracts away from the database system so that there is no need to switch from MySQL to PostgreSQL.
 * There are a lot of advanced features that support transactions, connection pooling, migratations, and seeds as an example.
   
-In this project, the ORM we will be using is **SQLAlchemy**.
+In this project, the ORM I will be using is **SQLAlchemy**.
+
+Located in the [Libraries](#library) is a list of further dependencies.
 
 ## Requirement 5<a name="req5"></a>
 **Document all endpoints for your API**
@@ -169,7 +171,7 @@ In this project, the ORM we will be using is **SQLAlchemy**.
 
 Entities is an object or concept about which you want to store information and that is to be represented in the database.
 
-Below is the Entity Relational Diagram demonstrating the entity relationships. This is the first attempt before Normalisation.
+Below is the Entity Relational Diagram demonstrating the entity relationships. Taking into consideration that this is the first attempt of a ERD before Normalisation. The true reflection of the database is in the Database Modelling Diagram.
 
 ![Entity Relational Diagram of Landscaping ADMIN database](docs/images/Landscaping_T2A2-2.png)
 
@@ -339,45 +341,6 @@ user_email text NOT NULL);
 ```ALTER TABLE USERS
 ADD PRIMARY KEY user_id;
 ```
-
-## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
-
-Create a virtual environment and activate it
-
-```python3 -m venv .venv && source .venv/bin/activate```
-
-Great a gitignore folder, main.py filder and a requirements.txt file
-
-Install Flask
-
-```pip3 install flask```
-
-Set up a basic Flask app in the main.py file and test that initially it works.
-
-## Development<a name="development"></a>
-
-1. Using an ORM - Install Flask-SQLAlchemy
-
-```pip3 install Flask-SQLAlchemy```
-
-Database connection
-
-```pip3 install psycopg2```
-
-Configure in main.py
-
-Create CLI Commands ("create") and ("drop")
-
-![First Test of Users Table created successfully](docs/images/user_table_success.png)
-
-2. Add Marshmallow
-
-Flask-Marshmallow is an integration layer for Flask that will allow for object serialisation/deserialization)
-
-```pip3 install flask-marshmallow```
-
-```pip install marshmallow-sqlalchemy```
-
 ## Libraries<a name="library"></a>
 
 Reference: https://medium.com/craftsmenltd/flask-with-sqlalchemy-marshmallow-2ec34ecfd9d4
@@ -398,17 +361,70 @@ Is a thin integration layer for Flask and marshmallow that adds additional featu
 
 Is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
 
+```pip3 install Flask-SQLAlchemy```
+
+Database connection
+
+```pip3 install psycopg2```
+
+Configure in main.py
+
 **Flask-SQLAlchemy**
 
 Is an extension for Flask that adds support for SQLAlchemy to your application. It aims to simplify using SQLAlchemy with Flask.
 
 **marshmallow-sqlalchemy**
 
-An SQLAlchemy integration with the marshmallow (de)serialization library.
+Flask-Marshmallow is an integration layer for Flask that will allow for object serialisation/deserialization library. Integrated with SQLAlchemy.
+
+```pip3 install flask-marshmallow```
+
+```pip install marshmallow-sqlalchemy```
 
 **pipenv**
 
-As the dependency manager. This is located in the .env.sample file as a reference to what is required. 
+As the dependency manager. This is located in the .env.sample file as a reference to what is required.
+
+## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
+
+Create a virtual environment and activate it
+
+```python3 -m venv .venv && source .venv/bin/activate```
+
+Great a gitignore folder, main.py filder and a requirements.txt file
+
+Install Flask
+
+```pip3 install flask```
+
+Set up a basic Flask app in the main.py file and test that initially it works.
+
+## Development<a name="development"></a>
+
+From the steps above, a virtual environment is set up and the environmental variables are configured correctly.
+
+This will display in the .flaskenv file
+
+```
+FLASK_APP=main
+FLASK_DEBUG=True
+```
+
+Next is setting up a .env file with the database url from postgreSQL connection. The same file is named .env.sample
+
+Using MVC (Model-View-Controller) architectural pattern, the next steps are to set up:
+
+* Models Folder
+* Controllers Folder
+
+"Purpose of a MVC Framework helps to seperate the different aspects of the application (input logic, business logic and GUI), while providing a loose coupling between these elements. This seperation helps to manage the complexity of the application."
+
+
+
+
+
+
+
 
 1. CRUD (Create, Read, Update, Delete)
 2. Authorisation and Authentication
