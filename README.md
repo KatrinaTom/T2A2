@@ -319,19 +319,9 @@ Connect to database
 
 ```\c landscaping_admin_db```
 
-Database connection
 
-```pip3 install psycopg2```
 
-```pip3 install flask-SQLAlchemy```
-
-Configure in main.py
-
-...
-
-Create a Model
-
-Example in SQL
+Example in SQL for initial table "users"
 
 **USERS**(__user_id__, type, first_name, last_name, address, phone_number, email)
 
@@ -369,9 +359,28 @@ Set up a basic Flask app in the main.py file and test that initially it works.
 
 ```pip3 install Flask-SQLAlchemy```
 
+Database connection
 
+```pip3 install psycopg2```
+
+Configure in main.py
+
+Create CLI Commands ("create") and ("drop")
+
+![First Test of Users Table created successfully](docs/images/user_table_success.png)
+
+2. Add Marshmallow
+
+Flask-Marshmallow is an integration layer for Flask that will allow for object serialisation/deserialization)
+
+```pip3 install flask-marshmallow```
+
+```pip install marshmallow-sqlalchemy```
 
 ...
+
+
+
 
 1. CRUD (Create, Read, Update, Delete)
 2. Authorisation and Authentication
