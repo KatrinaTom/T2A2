@@ -3,6 +3,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+# Create the database object
+db = SQLAlchemy()
 
 def create_app():
 
@@ -12,8 +14,14 @@ def create_app():
     # Configuring the app
     app.config.from_object("config.app_config")
 
-    # Create the database object
-    db = SQLAlchemy(app)
+    # Creating the dataase object. This is to use the our own ORM
+    db.init_app(app)
+
+    # importing the controllers and acticate the blueprints
+    from controllers import registerable_controllers
+
+    for controller in registerable_controllers:
+        app.register_blueprint(controller)
 
     return app
 

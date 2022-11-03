@@ -13,4 +13,4 @@ class User(db.Model):
     p_number = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
 
-    job_references = db.relationship('Job_Reference', back_populates='users')
+    # job_references = db.relationship('Job_Reference', back_populates='users')
