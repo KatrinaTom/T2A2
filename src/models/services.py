@@ -11,5 +11,5 @@ class Service(db.Model):
     print = db.Column(db.Integer, nullable=False)
     size = db.Column(db.String(50), nullable=False)
 
-    service_requests_id = db.relationship('Service_Request', back_populates='services')
+    # service_requests_id = db.relationship('Service_Request', back_populates='services')
 

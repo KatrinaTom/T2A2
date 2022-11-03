@@ -12,4 +12,4 @@ class Status(db.Model):
     complete = db.Column(boolean)
     paid_in_full = db.Column(boolean)
 
-    job_reference_id = db.relationship("Job_Reference", back_populates="status")
+    # job_reference_id = db.relationship("Job_Reference", back_populates="status")
