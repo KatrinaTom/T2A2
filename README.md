@@ -50,7 +50,7 @@ With the use of Trello, the project is tracked in Phases
 
 ### Resources
 * Important Links
-* References
+* [References](#reference)
 
 ____________________________________
 
@@ -426,8 +426,15 @@ Using MVC (Model-View-Controller) architectural pattern, the next steps are to s
 
 
 
+
+
 1. CRUD (Create, Read, Update, Delete)
 2. Authorisation and Authentication
 3. Validation and Error Handling
 4. Testing
 5. Deployment
+
+## References<a name="reference"></a>
+
+Visual Paradigm, 2022, "What is Model-View and Control?", accessed 3 Nov 2022, <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-model-view-control-mvc/>
+
