@@ -40,12 +40,13 @@ With the use of Trello, the project is tracked in Phases
 
 1. [Database Creation](#database)
 2. [Set Up (incl. Third Party Dependencies)](#setup)
-3. [Development](#development)
-4. CRUD (Create, Read, Update, Delete)
-5. Authorisation and Authentication
-6. Validation and Error Handling
-7. Testing
-8. Deployment
+3. [Libraries](#library)
+4. [Development](#development)
+5. CRUD (Create, Read, Update, Delete)
+6. Authorisation and Authentication
+7. Validation and Error Handling
+8. Testing
+9. Deployment
 
 ### Resources
 * Important Links
@@ -377,10 +378,37 @@ Flask-Marshmallow is an integration layer for Flask that will allow for object s
 
 ```pip install marshmallow-sqlalchemy```
 
-...
+## Libraries<a name="library"></a>
 
+Reference: https://medium.com/craftsmenltd/flask-with-sqlalchemy-marshmallow-2ec34ecfd9d4
 
+**Flask**
 
+Is a lightweight WSGI web application framework in Python. It is designed to make getting started very quickly and very easily.
+
+**marshmallow**
+
+Is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.
+
+**Flask-Marshmallow** 
+
+Is a thin integration layer for Flask and marshmallow that adds additional features to marshmallow.
+
+**SQLAlchemy**
+
+Is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
+
+**Flask-SQLAlchemy**
+
+Is an extension for Flask that adds support for SQLAlchemy to your application. It aims to simplify using SQLAlchemy with Flask.
+
+**marshmallow-sqlalchemy**
+
+An SQLAlchemy integration with the marshmallow (de)serialization library.
+
+**pipenv**
+
+As the dependency manager. This is located in the .env.sample file as a reference to what is required. 
 
 1. CRUD (Create, Read, Update, Delete)
 2. Authorisation and Authentication
