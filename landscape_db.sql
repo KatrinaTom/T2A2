@@ -1,9 +1,9 @@
-drop table users, status, job_reference, services, service_request;
+DROP TABLE USERS, SERVICES, STATUS; JOB_REFERENCE;
 
 -- Table to capture all users in the database 
 CREATE TABLE if not exists USERS (
     id serial PRIMARY KEY,
-    user_type text NOT NULL,
+    type text NOT NULL,
     f_name varchar(128) NOT NULL,
     l_name varchar(128) NOT NULL,
     address text NOT NULL,
@@ -58,11 +58,14 @@ CREATE TABLE if not exists JOB_REFERENCE (
 
 truncate table USERS, SERVICES, JOB_REFERENCE;
 
-INSERT into USERS (user_type, f_name, l_name, address, p_number, email) values (
-    'customer', 'Kat', 'Test', '153 Test Road, Testville, QLD, 4000', '0400000001', 'kattest@gmail.com'
-);
+INSERT into USERS (type, f_name, l_name, address, p_number, email) 
+    values ('customer', 'Kat', 'Test', '153 Test Road, Testville, QLD, 4000', '0400000001', 'kattest@gmail.com');
 
-INSERT into SERVICES (name, description, size, price) values (
-    'Lawn Care', 'Mowing and Fertilization', 'S', '80'
-);
+INSERT into SERVICES (name, description, size, price) 
+    values ('Lawn Care', 'Mowing and Fertilization', 'S', '80');
  
+-- CREATE VIEW SERVICE_REQUEST as
+--     select user_type, name, description, size, price
+--         from users w
+--         left joing services c
+--         on w.services = c.name;
