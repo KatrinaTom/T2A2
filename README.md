@@ -164,7 +164,16 @@ Located in the [Libraries](#library) is a list of further dependencies.
 ## Requirement 5<a name="req5"></a>
 **Document all endpoints for your API**
 
-...
+As a user
+I want to create a new customer in the database
+So that I can search, add them to a job reference and keep track of outstanding invoices
+
+API's that reference user:
+
+Search for a customer (user) in the database//
+localhost:8080/auth/user
+
+Register a new customer (user)// localhost:8080/auth/register
 
 ## Requirement 6<a name="req6"></a>
 **An ERD for your app**
