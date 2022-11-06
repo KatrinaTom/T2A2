@@ -168,12 +168,23 @@ As a user
 I want to create a new customer in the database
 So that I can search, add them to a job reference and keep track of outstanding invoices
 
-API's that reference user:
+Endpoints that reference for USERS:
 
-Search for a customer (user) in the database//
-localhost:8080/auth/user
+Search for all customers (users) in the database // GET request
+``localhost:8080/auth/users``
 
-Register a new customer (user)// localhost:8080/auth/register
+Search for one customer(user) in the database // GET request
+``localhost:8080/auth/user/1``
+
+Register a new customer (user), create a user in the database // POST request
+``localhost:8080/auth/register``
+
+Update a customer (user) in the database // PUT or PATCH request
+``localhost:8080/auth/update_user/1``
+
+Delete a customer (user) from the database // DELETE request
+``localhost:8080/auth/delete/1``
+
 
 ## Requirement 6<a name="req6"></a>
 **An ERD for your app**

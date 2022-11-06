@@ -27,6 +27,7 @@ def get_one_user(id):
     else:
         return {'error': f'User not found with id {id}'}, 404
 
+# Create a new user, register them in the database
 @auth_bp.route('/register/', methods=['POST'])
 def auth_register():
     try:
@@ -45,6 +46,7 @@ def auth_register():
     except IntegrityError:
         return {'error': 'Email address already in use'}, 409
 
+# Update a user in the database
 @auth_bp.route('/update_user/<int:id>', methods=['PUT', 'PATCH'])
 # @jwt_required()
 def update_one_user(id):
