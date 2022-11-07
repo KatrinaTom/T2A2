@@ -22,7 +22,7 @@ def get_one_service(id):
     print("Hello one type of service")
     stmt = db.select(Service).filter_by(id=id)
     service = db.session.scalar(stmt)
-    if servce:
+    if service:
         return ServiceSchema().dump(service)
     else:
         return {'error': f'Type of service not found with id {id}'}, 404

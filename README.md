@@ -165,7 +165,9 @@ Located in the [Libraries](#library) is a list of further dependencies.
 **Document all endpoints for your API**
 
 As a user
+
 I want to create a new customer in the database
+
 So that I can search, add them to a job reference and keep track of outstanding invoices
 
 Endpoints that reference for USERS:
@@ -184,6 +186,34 @@ Update a customer (user) in the database // PUT or PATCH request
 
 Delete a customer (user) from the database // DELETE request
 ``localhost:8080/auth/delete/1``
+
+As a user
+
+I want to create a new service in the database
+
+So that I can add maintain more services for my customers
+
+Endpoints that reference SERVICES:
+
+Search for all available services // GET request
+``localhost:8080/service/available_services``
+
+Search for one type of service // GET request
+``localhost:8080/service/available_service/2``
+
+Add a new type of service to the database // POST request
+``localhost:8080/service/add``
+
+Update a service in the database // PUT or PATCH request
+``localhost:8080/service/update_service/2``
+
+Delete a service in the database // DELETE request
+``localhost:8080/service/delete/1``
+
+
+
+
+
 
 
 ## Requirement 6<a name="req6"></a>
