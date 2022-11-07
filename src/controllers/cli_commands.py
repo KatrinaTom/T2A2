@@ -1,6 +1,7 @@
 from flask import Blueprint
 from main import db
 from models.users import User
+from models.services import Service
 
 db_commands = Blueprint('db', __name__)
 

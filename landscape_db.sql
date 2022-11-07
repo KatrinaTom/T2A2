@@ -63,7 +63,7 @@ INSERT into USERS (type, f_name, l_name, address, p_number, email)
 
 INSERT into SERVICES (name, description, size, price) 
     values ('Lawn Care', 'Mowing and Fertilization', 'S', '80');
- 
+
 -- CREATE VIEW SERVICE_REQUEST as
 --     select user_type, name, description, size, price
 --         from users w
