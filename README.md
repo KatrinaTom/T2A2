@@ -170,7 +170,7 @@ I want to create a new customer in the database
 
 So that I can search, add them to a job reference and keep track of outstanding invoices
 
-Endpoints that reference for USERS:
+Endpoints that reference for **USERS:**
 
 Search for all customers (users) in the database // GET request
 ``localhost:8080/auth/users``
@@ -193,7 +193,7 @@ I want to create a new service in the database
 
 So that I can add maintain more services for my customers
 
-Endpoints that reference SERVICES:
+Endpoints that reference **SERVICES:**
 
 Search for all available services // GET request
 ``localhost:8080/service/available_services``
@@ -233,6 +233,13 @@ Different types of cardinal relationships are:
 * Many-to-Many Relationships
 
 In the above screenshot, the number 1 indicates a one to many relationship where the "M" displays.
+
+The final ERD representing the Database
+![Database Model including relationships with attributes](docs/images/Database_Model.png)
+
+The above image incorporates the practice of Normalisation to avoid data redundancy or duplicated data.
+
+"Normalisation is a technique for organising data in a database."
 
 **Cardinality**
 
@@ -284,12 +291,6 @@ Each entity is going to be a table in the database and entity attributes are goi
 **SERVICES**(__service_type_id__, name, description, size, price)
 
 **SERVICE_REQUEST**(__service_request_id__, services_id, jo_reference_id, quoted_price, units_hours)
-
-![Database Model including relationships with attributes](docs/images/Database_Model.png)
-
-The above image incorporates the practice of Normalisation to avoid data redundancy or duplicated data.
-
-"Normalisation is a technique for organising data in a database."
 
 Data has been separated into relevant and seperate tables, which are then related by keys. Such as Primary Keys (can only be one per table) and Foreign Keys that link to other tables.
 
@@ -466,26 +467,33 @@ Using MVC (Model-View-Controller) architectural pattern, the next steps are to s
 
 * Models Folder
 * Controllers Folder
+* Schemas Folder
 * Update main.py with the objects and controllers
 * Create Blueprint and objects
-* Connecting Marshmallow
+* Connecting Marshmallow for the schemas
 
 "Purpose of a MVC Framework helps to seperate the different aspects of the application (input logic, business logic and GUI), while providing a loose coupling between these elements. This seperation helps to manage the complexity of the application."
 
+**CRUD**
 
+(Create, Read, Update, Delete)
 
+Thinking about the user and how they will interact with the database the tables **SERVICES** and **CUSTOMERS** need to have CRUD available.
 
+This is to allow the admin user to maintain the database.
 
+**Authorisation and Authentication**
 
+Security is paramount in ensuring that the customers data is secure. Now that the database has endpoints that can be interacted with, it is critical to ensure that sql injection does not occur. This is already covered through the use of SQLAlchemy as the ORM, however now we need to consider other users who may have access to the database.
 
+This is achieved through the use of **Json Web Tokens** (JWT).
 
+**Validation and Error Handling**
 
+Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application. 
 
-1. CRUD (Create, Read, Update, Delete)
-2. Authorisation and Authentication
-3. Validation and Error Handling
-4. Testing
-5. Deployment
+1. Testing
+2. Deployment
 
 ## References<a name="reference"></a>
 
