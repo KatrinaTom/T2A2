@@ -42,8 +42,8 @@ With the use of Trello, the project is tracked in Phases
 2. [Set Up (incl. Third Party Dependencies)](#setup)
 3. [Libraries](#library)
 4. [Development](#development)
-5. CRUD (Create, Read, Update, Delete)
-6. Authorisation and Authentication
+5. [CRUD (Create, Read, Update, Delete)](#crud)
+6. [Authorisation and Authentication](#auth)
 7. Validation and Error Handling
 8. Testing
 9. Deployment
@@ -95,7 +95,7 @@ The **problem** I want to solve with the API Webserver Project is to build an Ad
 
 I want to create a admin portal for a Landscaping business
 
-So that I can track customers, jobs and invoicing"
+So that I can track customers and jobs"
 
 ## Requirement 2<a name="req2"></a>
 **Why is it a problem that needs solving?**
@@ -111,12 +111,12 @@ What does it need to do? Below is a list of requirements.
 
 **Landscaping Business - Build a API Web Server Admin Portal:**
 
-* Log in (securely) - To protect myself and my customer information.
-* Enter in a new customer
+* Secure my customer information.
+* Add a new customer
 * Search for an existing customer
 * Book a job for a customer
+* Search a job in the database
 * Select the type of job for the customer
-* Add a new user to access the Admin Portal
 * Update a job (update/ cancel)
 * Invoice a customer from their completed job
 
@@ -139,7 +139,7 @@ A comparison between a Relational Database Management System and a Non-Relationa
 
 Image from Medium, 2020, "Document vs Relational Databases"
 
-However there are more advantages in this case to use a Relational Database Management System than any other database management system due the nature of the data for this project.
+However there are more advantages in this case to use a Relational Database Management System than any other database management system due the nature of the data for this project. The main advantages is that data can be related to each other. 
 
 ## Requirement 4<a name="req4"></a>
 **Identify and discuss the key functionalities and benefits of an ORM**
@@ -156,6 +156,7 @@ Benefits of an ORM are:
 * That you can write in your chosen programming language. In this case using Python as the Programming Language.
 * Abstracts away from the database system so that there is no need to switch from MySQL to PostgreSQL.
 * There are a lot of advanced features that support transactions, connection pooling, migratations, and seeds as an example.
+* Helps prevent SQL injection due to not working directly with the database (postgreSQL). Security of the database. 
   
 In this project, the ORM I will be using is **SQLAlchemy**.
 
@@ -164,11 +165,11 @@ Located in the [Libraries](#library) is a list of further dependencies.
 ## Requirement 5<a name="req5"></a>
 **Document all endpoints for your API**
 
-As a user
+*As a user*
 
-I want to create a new customer in the database
+*I want to create a new customer in the database*
 
-So that I can search, add them to a job reference and keep track of outstanding invoices
+*So that I can search, add them to a job reference and keep track of outstanding invoices*
 
 Endpoints that reference for **USERS:**
 
@@ -187,11 +188,14 @@ Update a customer (user) in the database // PUT or PATCH request
 Delete a customer (user) from the database // DELETE request
 ``localhost:8080/auth/delete/1``
 
-As a user
+...
 
-I want to create a new service in the database
+*As a user*
 
-So that I can add maintain more services for my customers
+*I want to create a new service in the database*
+
+*So that I can add maintain more services for my customers*
+
 
 Endpoints that reference **SERVICES:**
 
@@ -209,11 +213,6 @@ Update a service in the database // PUT or PATCH request
 
 Delete a service in the database // DELETE request
 ``localhost:8080/service/delete/1``
-
-
-
-
-
 
 
 ## Requirement 6<a name="req6"></a>
@@ -235,11 +234,13 @@ Different types of cardinal relationships are:
 In the above screenshot, the number 1 indicates a one to many relationship where the "M" displays.
 
 The final ERD representing the Database
-![Database Model including relationships with attributes](docs/images/Database_Model.png)
+![Database Model including relationships with attributes](docs/images/Database.png)
 
 The above image incorporates the practice of Normalisation to avoid data redundancy or duplicated data.
 
 "Normalisation is a technique for organising data in a database."
+
+In the above image, Crows Foot Notationw as used to demonstrate the relationship between the entities.
 
 **Cardinality**
 
@@ -282,21 +283,19 @@ The second step of the database creation is the relational model. Transforming t
 
 Each entity is going to be a table in the database and entity attributes are going to be the columns of that table.
 
-**USERS**(__user_id__, type, first_name, last_name, address, phone_number, email)
+**USERS**(__id__, type, first_name, last_name, address, phone_number, email)
 
-**JOB_REFERENCE**(__reference_id__, start_date, end_date, user_id, service_request_id, units_hours, status_id, description)
+**JOB_REFERENCE**(__id__, start_date, end_date, user_id, service_request_id, units_hours, status_id, description)
 
-**STATUS**(__status_id__, quote, booked, in_progress, canceled, completed, paid_in_full)
+**STATUS**(__id__, quote, booked, in_progress, canceled, completed, paid_in_full)
 
-**SERVICES**(__service_type_id__, name, description, size, price)
+**SERVICES**(__id__, name, description, size, price)
 
-**SERVICE_REQUEST**(__service_request_id__, services_id, jo_reference_id, quoted_price, units_hours)
+**SERVICE_REQUEST**(___id__, services_id, jo_reference_id, quoted_price, units_hours)
 
 Data has been separated into relevant and seperate tables, which are then related by keys. Such as Primary Keys (can only be one per table) and Foreign Keys that link to other tables.
 
 Including a column to show the attribute types. It is a combination of Integers, Strings, Boolean values and character limits. This is to ensure data integrity by adding in constraints such as Not Null. 
-
-In the above image, Crows Foot Notationw as used to demonstrate the relationship between the entities.
 
 ## Requirement 10<a name="req10"></a>
 **Describe the way tasks are allocated and tracked in your project**
@@ -325,6 +324,12 @@ Columns in Trello:
 * In Progress: Actively working on the card in this column, to complete the acceptance criteria.
 * Testing: During development, Test Driven Development is considered. The development cards include the testing so that it is a continuous process. Including unit testing and end to end testing manually as a sanity check/ regression testing.
 * Completed/Done: All acceptance criteria in the card is marked as completed, then the card can be moved to this column and progress tracked.
+
+![Snapshot of Trello](docs/images/Trello.png)
+
+Example of a Card in Trello
+
+![Example of a Card in Trello](docs/images/Story_Card.png)
 
 ## Story Mapping - Customer Journey<a name="journey"></a>
 
@@ -474,7 +479,7 @@ Using MVC (Model-View-Controller) architectural pattern, the next steps are to s
 
 "Purpose of a MVC Framework helps to seperate the different aspects of the application (input logic, business logic and GUI), while providing a loose coupling between these elements. This seperation helps to manage the complexity of the application."
 
-**CRUD**
+## CRUD<a name="crud"></a>
 
 (Create, Read, Update, Delete)
 
@@ -482,7 +487,7 @@ Thinking about the user and how they will interact with the database the tables 
 
 This is to allow the admin user to maintain the database.
 
-**Authorisation and Authentication**
+## Authorisation and Authentication<a name="auth"></a>
 
 Security is paramount in ensuring that the customers data is secure. Now that the database has endpoints that can be interacted with, it is critical to ensure that sql injection does not occur. This is already covered through the use of SQLAlchemy as the ORM, however now we need to consider other users who may have access to the database.
 
