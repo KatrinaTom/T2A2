@@ -1,8 +1,10 @@
 from urllib import request
 from flask import Blueprint, jsonify, request, abort
-from main import db
-from models.users import User
 from sqlalchemy.exc import IntegrityError
+from main import db, jwt
+from models.users import User
+from flask_jwt_extended import create_access_token, get_jwt_identity
+
 from schemas.user_schema import UserSchema
 
 # Create the controller for users 
@@ -10,6 +12,7 @@ auth_bp = Blueprint('auth',__name__, url_prefix='/auth')
 
 # Search for all users in the database
 @auth_bp.route('/users/', methods=['GET'])
+@jwt_required()
 def get_users():
     # print("Hello") Used for Testing API Route
     stmt = db.select(User)
@@ -37,7 +40,8 @@ def auth_register():
             l_name = request.json['l_name'],
             address = request.json['address'],
             p_number = request.json['p_number'],
-            email = request.json['email']
+            email = request.json['email'],
+            is_admin = request.json['is_admin']
         )
 
         db.session.add(user)
@@ -59,6 +63,8 @@ def update_one_user(id):
         user.address = request.json.get('address') or user.address
         user.p_number = request.json.get('p_number') or user.p_number
         user.email = request.json.get('email') or user.email
+        user.is_admin = request.json.get('is_admin') or user.is_admin
+        
         db.session.commit()      
         return UserSchema().dump(user)
     else:
@@ -79,4 +85,12 @@ def delete_one_user(id):
         return {'message': f"User '{user.f_name}' deleted successfully"}
     else:
         return {'error': f'User not found with id {id}'}, 404
+
+
+def authorize():
+    user_id = get_jwt_identity()
+    stmt = db.select(User).filter_by(id=user_id)
+    user = db.session.scalar(stmt)
+    if not user.is_admin:
+        abort(401)
 

@@ -5,7 +5,7 @@ from main import ma
 class UserSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ("id", "type", "f_name", "l_name", "address", "p_number", "email")
+        fields = ("id", "type", "f_name", "l_name", "address", "p_number", "email", "is_admin")
         ordered = True
 
 # Single job reference schema, when one job reference needs to be retrieved

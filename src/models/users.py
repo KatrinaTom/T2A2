@@ -14,6 +14,7 @@ class User(db.Model):
     address = db.Column(db.String, nullable=False)
     p_number = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
+    is_admin = db.Column(db.Boolean, default=False)
 
     # job_references = db.relationship('Job_Reference', back_populates='users')
     # Job_Reference will pull data from Users. 

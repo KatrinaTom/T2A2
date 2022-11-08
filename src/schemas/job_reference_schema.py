@@ -5,7 +5,7 @@ from main import ma
 class Job_ReferenceSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ("id", "start_date", "end_date", "units_hours", "description")
+        fields = ("id", "users_id", "status_id", "start_date", "end_date", "units_hours", "description")
 
 # Single job reference schema, when one job reference needs to be retrieved
 job_reference_schema = Job_ReferenceSchema()
