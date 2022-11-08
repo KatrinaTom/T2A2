@@ -4,7 +4,7 @@ from flask import Blueprint, jsonify, request, abort
 from sqlalchemy.exc import IntegrityError
 from main import db, jwt, bcrypt
 from models.users import User
-from flask_jwt_extended import create_access_token, get_jwt_identity
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 from schemas.user_schema import UserSchema
 
@@ -27,7 +27,7 @@ def auth_login():
 
 # Search for all users in the database
 @auth_bp.route('/users/', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_users():
     # print("Hello") Used for Testing API Route
     stmt = db.select(User)
@@ -36,6 +36,7 @@ def get_users():
 
 # Search for only one user in the database, but the url you need to know the user id
 @auth_bp.route('/user/<int:id>/', methods=['GET'])
+@jwt_required()
 def get_one_user(id):
     print("Hello One User")
     stmt = db.select(User).filter_by(id=id)
@@ -47,6 +48,7 @@ def get_one_user(id):
 
 # Create a new user, register them in the database
 @auth_bp.route('/register/', methods=['POST'])
+@jwt_required()
 def auth_register():
     try:
         user = User(
@@ -68,7 +70,7 @@ def auth_register():
 
 # Update a user in the database
 @auth_bp.route('/update_user/<int:id>', methods=['PUT', 'PATCH'])
-# @jwt_required()
+@jwt_required()
 def update_one_user(id):
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
@@ -89,9 +91,8 @@ def update_one_user(id):
 
 # Delete a user from the database, but only an admin can do this.
 @auth_bp.route('/delete/<int:id>/', methods=['DELETE'])
-# @jwt_required()
+@jwt_required()
 def delete_one_user(id):
-    # authorize()
     print("Come to delete a user")
 
     stmt = db.select(User).filter_by(id=id)
@@ -103,11 +104,5 @@ def delete_one_user(id):
     else:
         return {'error': f'User not found with id {id}'}, 404
 
-# Authoise the admin user to perform CRUD
-def authorize():
-    user_id = get_jwt_identity()
-    stmt = db.select(User).filter_by(id=user_id)
-    user = db.session.scalar(stmt)
-    if not user.is_admin:
-        abort(401)
+
 

@@ -38,6 +38,33 @@ def seed_db():
     db.session.add_all(admin_user)
     db.session.commit()
 
+    # Create a new customer in the database
+    new_customer = [
+        User(
+        type='Customer',
+        f_name='Katrina',
+        l_name='Tom',
+        address='153 Test Road, Testville, QLD, 4000',
+        p_number='0400000001',
+        email='kattest@gmail.com',
+        )
+    ]
+    db.session.add_all(new_customer)
+    db.session.commit()
+
+    # Create a landscaping service in the database
+    new_service = [
+        Service(
+        name='Lawn Care', 
+        description='Mowing and Fertilization',
+        price='80',
+        size='Small'
+        )
+    ]
+    db.session.add_all(new_service)
+    db.session.commit()
+
+
     # create_job = Job_Reference(
     #         user_id = '6',
     #         status_id = 'Quote',
@@ -50,7 +77,6 @@ def seed_db():
     # db.session.commit()
 
     print("Tables successfully seeded")
-
 
 
 

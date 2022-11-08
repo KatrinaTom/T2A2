@@ -469,7 +469,13 @@ As the dependency manager. This is located in the .env.sample file as a referenc
 
 A Flask extension that provides bcrypt hashing utilities
 
-```pip install Flask-Bcrypt``
+``pip install Flask-Bcrypt``
+
+**JWT Flask Extended**
+
+A Flask extenstion for JWT Manager (authentication), allowing for token creation
+
+``pip install flask-jwt-extended``
 
 ## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
 
@@ -487,7 +493,7 @@ Set up a basic Flask app in the main.py file and test that initially it works.
 
 ## Development<a name="development"></a>
 
-From the steps above, a virtual environment is set up. 
+From the steps above, a virtual environment is set up.
 
 The environmental variables are configured in the .env file with the database url from postgreSQL connection. The example file is named .env.sample
 

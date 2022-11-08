@@ -4,12 +4,14 @@ from main import db
 from models.services import Service
 from sqlalchemy.exc import IntegrityError
 from schemas.service_schema import ServiceSchema
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 # Create the controller for users
 service_bp = Blueprint('service',__name__, url_prefix='/service')
 
 # Search for all available services in the database
 @service_bp.route('/available_services/', methods=['GET'])
+@jwt_required()
 def get_services():
     print("Hello Service")
     stmt = db.select(Service)
@@ -18,6 +20,7 @@ def get_services():
 
 # # Search for only one type of service in the database, for the url you need to know the service id
 @service_bp.route('/available_service/<int:id>/', methods=['GET'])
+@jwt_required()
 def get_one_service(id):
     print("Hello one type of service")
     stmt = db.select(Service).filter_by(id=id)
@@ -29,6 +32,7 @@ def get_one_service(id):
 
 # Create a new landscaping service for the database
 @service_bp.route('/add/', methods=['POST'])
+@jwt_required()
 def service_add():
     try:
         service = Service(
@@ -46,7 +50,7 @@ def service_add():
 
 # Update a service in the database
 @service_bp.route('/update_service/<int:id>', methods=['PUT', 'PATCH'])
-# @jwt_required()
+@jwt_required()
 def update_one_service(id):
     stmt = db.select(Service).filter_by(id=id)
     service = db.session.scalar(stmt)
@@ -62,9 +66,8 @@ def update_one_service(id):
 
 # Delete a service from the database, but only an admin can do this.
 @service_bp.route('/delete/<int:id>/', methods=['DELETE'])
-# @jwt_required()
+@jwt_required()
 def delete_one_user(id):
-    # authorize()
     print("Come to delete a service")
 
     stmt = db.select(Service).filter_by(id=id)
