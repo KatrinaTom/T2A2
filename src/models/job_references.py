@@ -7,8 +7,8 @@ class Job_Reference(db.Model):
     __tablename__ = 'job_references'
 
     id = db.Column(db.Integer, primary_key=True)
-    users_id = db.Column(db.Integer, db.ForeignKey)
-    status_id = db.Column(db.Integer, db.ForeignKey)
+    # users_id = db.Column(db.Integer, db.ForeignKey)
+    # status_id = db.Column(db.Integer, db.ForeignKey)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date)
     units_hours = db.Column(db.Integer, nullable=False)

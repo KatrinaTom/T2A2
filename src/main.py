@@ -36,9 +36,9 @@ def create_app():
     jwt.init_app(app)
 
     # Error handle Validation Error 
-    @app.errorhandler(ValidationError)
-    def validation_error(err):
-        return {'error': err.messages}, 400
+    # @app.errorhandler(ValidationError)
+    # def validation_error(err):
+    #     return {'error': err.messages}, 400
 
     # Handle error when invalid request is used
     @app.errorhandler(400)

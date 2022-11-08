@@ -3,6 +3,7 @@ from main import db
 # Database model - Users Table
 
 # Note: "Type" refers to Employee or Customer
+# Password is only for Admin users to log into the database/ provide access to the database
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -14,6 +15,7 @@ class User(db.Model):
     address = db.Column(db.String, nullable=False)
     p_number = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, default=False)
     is_admin = db.Column(db.Boolean, default=False)
 
     # job_references = db.relationship('Job_Reference', back_populates='users')

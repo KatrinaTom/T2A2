@@ -2,7 +2,14 @@ import os
 
 class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    JWT_SECRET_KEY = os.environ.get('SECRET_KEY')
+    JSON_SORT_KEYS = False
+
+    @property
+    def JWT_SECRET_KEY(self):
+        value = os.environ.get('SECRET_KEY')
+
+        return value
+
     @property
     def SQLALCHEMY_DATABASE_URI(self):
         value = os.environ.get('DATABASE_URL')
