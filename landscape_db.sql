@@ -8,7 +8,8 @@ CREATE TABLE if not exists USERS (
     l_name varchar(128) NOT NULL,
     address text NOT NULL,
     p_number integer NOT NULL,
-    email text NOT NULL
+    email text NOT NULL,
+    is_admin boolean NOT NULL,
 );
 
 -- Table to capture all the types of services offered by the landscaping company
@@ -64,8 +65,3 @@ INSERT into USERS (type, f_name, l_name, address, p_number, email)
 INSERT into SERVICES (name, description, size, price) 
     values ('Lawn Care', 'Mowing and Fertilization', 'S', '80');
 
--- CREATE VIEW SERVICE_REQUEST as
---     select user_type, name, description, size, price
---         from users w
---         left joing services c
---         on w.services = c.name;

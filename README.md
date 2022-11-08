@@ -173,6 +173,11 @@ Located in the [Libraries](#library) is a list of further dependencies.
 
 Endpoints that reference for **USERS:**
 
+Login as an ADMIN user 
+``localhost:8080/auth/login``
+
+** Above requires a Bearer Token for CRUD opertions. Login requires email, password and must be an Admin for security **
+
 Search for all customers (users) in the database // GET request
 ``localhost:8080/auth/users``
 
@@ -213,6 +218,20 @@ Update a service in the database // PUT or PATCH request
 
 Delete a service in the database // DELETE request
 ``localhost:8080/service/delete/1``
+
+...
+
+*As a user*
+
+*I want to the ability to maintain a job reference*
+
+*So that I can create, track and delete job references*
+
+Endpoints that reference **JOB_REFERENCE**
+
+Create a new job reference in the database // POST request
+``localhost:8080/job_reference/create``
+
 
 
 ## Requirement 6<a name="req6"></a>
@@ -285,6 +304,8 @@ Each entity is going to be a table in the database and entity attributes are goi
 
 **USERS**(__id__, type, first_name, last_name, address, phone_number, email)
 
+** Update, added is_admin and password to add security for ADMIN users. 
+
 **JOB_REFERENCE**(__id__, start_date, end_date, user_id, service_request_id, units_hours, status_id, description)
 
 **STATUS**(__id__, quote, booked, in_progress, canceled, completed, paid_in_full)
@@ -355,6 +376,9 @@ An overview of this project is that it focuses on using the following:
 * Relational Database, use of PostgreSQL and create tables with SQL.
 * Data Manipulation, SQL insert, simple queries, delete, update, alter tables
 * Flask - web framework for making a web application (serve requests and responses)
+* Confidence in creating a web application with ORM (Object Relational Mapping) - SQLAlchemy
+* Practice with CRUD (Create, Read, Update, Delete) of a databse with API Endpoints.
+* Practice security of the database (Authorisation and Authentication) with Json Web Tokens. Inlcuding the use of Bearer Tokens
 
 ## Database Creation<a name="database"></a>
 
@@ -441,6 +465,12 @@ Flask-Marshmallow is an integration layer for Flask that will allow for object s
 
 As the dependency manager. This is located in the .env.sample file as a reference to what is required.
 
+**Flask-Bcrypt** 
+
+A Flask extension that provides bcrypt hashing utilities
+
+```pip install Flask-Bcrypt``
+
 ## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
 
 Create a virtual environment and activate it
@@ -493,12 +523,34 @@ Security is paramount in ensuring that the customers data is secure. Now that th
 
 This is achieved through the use of **Json Web Tokens** (JWT).
 
+1. Additional fields added to USERS Table. is_admin and password so that a ADMIN user needs to be registered as an ADMIN user first.
+2. Create a new ADMIN user API endpoint. So that authorisation can be added to the CRUD operations
+3. Bearer Token is required to access the database. Expires in 1 day.
+
 **Validation and Error Handling**
 
 Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application. 
 
 1. Testing
-2. Deployment
+..
+
+## Deployment<a name="deployment"></a>
+
+To access the "fake" data to test the database. The data is located under controllers/cli_commands.py
+
+1. Drop the tables to start with fresh data
+
+``flask db drop``
+
+2. Create the tables for the database
+
+``flask db create``
+
+3. This command add the data located under cli_commands.py to the database. This is test data.
+
+``flask db seed``
+
+** With the above commands, an ADMIN user user is created.
 
 ## References<a name="reference"></a>
 
