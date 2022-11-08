@@ -46,7 +46,7 @@ With the use of Trello, the project is tracked in Phases
 6. [Authorisation and Authentication](#auth)
 7. Validation and Error Handling
 8. Testing
-9. Deployment
+9. [Deployment](#deployment)
 
 ### Resources
 * Important Links
@@ -536,7 +536,7 @@ Now that Endpoints exist, error handling needs to occur to ensure that if the wr
 
 ## Deployment<a name="deployment"></a>
 
-To access the "fake" data to test the database. The data is located under controllers/cli_commands.py
+To access the "test" data for the database. The data is located under controllers/cli_commands.py
 
 1. Drop the tables to start with fresh data
 
