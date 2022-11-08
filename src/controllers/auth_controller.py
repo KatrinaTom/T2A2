@@ -38,7 +38,7 @@ def get_users():
 @auth_bp.route('/user/<int:id>/', methods=['GET'])
 @jwt_required()
 def get_one_user(id):
-    print("Hello One User")
+    # print("Hello One User")
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
     if user:
@@ -93,7 +93,7 @@ def update_one_user(id):
 @auth_bp.route('/delete/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_user(id):
-    print("Come to delete a user")
+    authorize()
 
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
@@ -104,5 +104,11 @@ def delete_one_user(id):
     else:
         return {'error': f'User not found with id {id}'}, 404
 
-
+    # Adding in redundancy to check that only an ADMIN user can perform this function
+    def authorize():
+        user_id = get_jwt_identity()
+        stmt = db.select(User).filter_by(id=user_id)
+        user = db.session.scalar(stmt)
+        if not user.is_admin:
+            abort(401)
 

@@ -13,7 +13,7 @@ service_bp = Blueprint('service',__name__, url_prefix='/service')
 @service_bp.route('/available_services/', methods=['GET'])
 @jwt_required()
 def get_services():
-    print("Hello Service")
+    # print("Hello Service")
     stmt = db.select(Service)
     services = db.session.scalars(stmt)
     return ServiceSchema(many=True).dump(services)
@@ -22,7 +22,7 @@ def get_services():
 @service_bp.route('/available_service/<int:id>/', methods=['GET'])
 @jwt_required()
 def get_one_service(id):
-    print("Hello one type of service")
+    # print("Hello one type of service")
     stmt = db.select(Service).filter_by(id=id)
     service = db.session.scalar(stmt)
     if service:
@@ -68,6 +68,7 @@ def update_one_service(id):
 @service_bp.route('/delete/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_user(id):
+    authorize()
     print("Come to delete a service")
 
     stmt = db.select(Service).filter_by(id=id)
@@ -78,3 +79,11 @@ def delete_one_user(id):
         return {'message': f"The '{service.name}' has been deleted successfully"}
     else:
         return {'error': f'The service is not found with id {id}'}, 404
+
+ # Adding in redundancy to check that only an ADMIN user can perform this function
+def authorize():
+    user_id = get_jwt_identity()
+    stmt = db.select(User).filter_by(id=user_id)
+    user = db.session.scalar(stmt)
+    if not user.is_admin:
+        abort(401)

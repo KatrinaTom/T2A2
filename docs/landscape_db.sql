@@ -1,3 +1,5 @@
+-- Inital concept of database creation with SQL practice
+
 DROP TABLE USERS, SERVICES, STATUS; JOB_REFERENCE;
 
 -- Table to capture all users in the database 
