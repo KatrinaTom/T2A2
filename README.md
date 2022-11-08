@@ -286,12 +286,24 @@ In the above image, Crows Foot Notationw as used to demonstrate the relationship
 ## Requirement 7<a name="req7"></a>
 **Detail any third party services that your app will use**
 
-...
+Detail link to the third party serivices used is under [Libraries](#library).
+
+Including a short description as to the functionality and requirements of each service. 
 
 ## Requirement 8<a name="req8"></a>
 **Describe your projects models in terms of the relationships they have with each other**
 
-...
+The Landscaping Admin database is structured around Model View Controller (MVC) Architectural pattern. A way or organsing a large application.
+
+The database tables, the models:
+* Users
+* Services
+* Status
+* Job_Reference
+* Service_request
+
+The relationship between the controller is that it queries the models. Where the controller will send back a response to the model to be updated or displayed to the client.
+
 
 ## Requirement 9<a name="req9"></a>
 **Discuss the database relations to be implemented in your application**
@@ -467,13 +479,13 @@ As the dependency manager. This is located in the .env.sample file as a referenc
 
 **Flask-Bcrypt** 
 
-A Flask extension that provides bcrypt hashing utilities
+A Flask extension that provides bcrypt hashing utilities for passwords.
 
 ``pip install Flask-Bcrypt``
 
 **JWT Flask Extended**
 
-A Flask extenstion for JWT Manager (authentication), allowing for token creation
+A Flask extenstion for JWT Manager (authentication), allowing for token creation and authentication.
 
 ``pip install flask-jwt-extended``
 
@@ -527,17 +539,19 @@ This is to allow the admin user to maintain the database.
 
 Security is paramount in ensuring that the customers data is secure. Now that the database has endpoints that can be interacted with, it is critical to ensure that sql injection does not occur. This is already covered through the use of SQLAlchemy as the ORM, however now we need to consider other users who may have access to the database.
 
-This is achieved through the use of **Json Web Tokens** (JWT).
+This is achieved through the use of **JSON Web Tokens** (JWT).
 
 1. Additional fields added to USERS Table. is_admin and password so that a ADMIN user needs to be registered as an ADMIN user first.
 2. Create a new ADMIN user API endpoint. So that authorisation can be added to the CRUD operations
 3. Bearer Token is required to access the database. Expires in 1 day.
+4. Function to Authorise Delete function. Currently out of scope as there is only access to admin users. However good practice to learn additional authorisation.
 
 **Validation and Error Handling**
 
-Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application. 
+Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application.
 
 1. Testing
+   
 ..
 
 ## Deployment<a name="deployment"></a>
