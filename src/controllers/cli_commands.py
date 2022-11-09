@@ -71,17 +71,19 @@ def seed_db():
     db.session.commit()
 
     # Create a job_reference 
-    # create_job = Job_Reference(
-    #         user_id = '1',
-    #         status = 'Quote',
-    #         service_id = "1",
-    #         start_date = '27/11/2022',
-    #         end_date = '27/11/2022',
-    #         units_hours = '5',
-    #         description = 'Build a small garden and plant with seasonable plants.'
-    # )
-    # db.session.add_all(create_job)
-    # db.session.commit()
+    create_job = [
+    Job_Reference(
+            status = 'Quote',
+            # service_id = "1",
+            start_date = '2023-01-02',
+            end_date = '2023-01-02',
+            units_hours = '5',
+            description = 'Build a small garden and plant with seasonable plants.',
+            user_id = new_customer[0].id
+        )
+    ]
+    db.session.add_all(create_job)
+    db.session.commit()
 
     print("Tables successfully seeded")
 

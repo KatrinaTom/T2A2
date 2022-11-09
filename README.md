@@ -229,6 +229,9 @@ Delete a service in the database // DELETE request
 
 Endpoints that reference **JOB_REFERENCE**
 
+``localhost:8080/job_reference/jobs/`` // GET request
+
+
 Create a new job reference in the database // POST request
 ``localhost:8080/job_reference/create``
 
@@ -293,7 +296,7 @@ Including a short description as to the functionality and requirements of each s
 ## Requirement 8<a name="req8"></a>
 **Describe your projects models in terms of the relationships they have with each other**
 
-The Landscaping Admin database is structured around Model View Controller (MVC) Architectural pattern. A way or organsing a large application.
+The Landscaping Admin database is structured around Model View Controller (MVC) Architectural pattern. A way or organsing a large application. Seperation of concern.
 
 The database tables, the models:
 * Users
@@ -303,7 +306,6 @@ The database tables, the models:
 * Service_request
 
 The relationship between the controller is that it queries the models. Where the controller will send back a response to the model to be updated or displayed to the client.
-
 
 ## Requirement 9<a name="req9"></a>
 **Discuss the database relations to be implemented in your application**

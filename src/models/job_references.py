@@ -14,4 +14,6 @@ class Job_Reference(db.Model):
     end_date = db.Column(db.Date)
     units_hours = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(128), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    user = db.relationship("User", back_populates="job_references")
