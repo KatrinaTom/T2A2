@@ -1,6 +1,6 @@
 from main import db
 
-# Database for service requests. Joining table
+# Database for service requests. (Many to many relationships) Joining table
 
 class Service_Request(db.Model):
     __tablename__ = 'service_requests'
@@ -11,4 +11,6 @@ class Service_Request(db.Model):
 
     # services_id = db.relationship('Service', back_populates='service_requests')
     # job_references_id = db.relationship('Job_Reference', back_populates='service_requests')
+
+    # This is a many to many relationship with services. 
 

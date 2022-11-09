@@ -18,6 +18,10 @@ class User(db.Model):
     password = db.Column(db.String, default=False)
     is_admin = db.Column(db.Boolean, default=False)
 
-    # job_references = db.relationship('Job_Reference', back_populates='users')
-    # Job_Reference will pull data from Users. 
+    # Job_Reference is a one to many relationship to user. A user can have many job_references
+    job_references = db.relationship(
+        'Job_Reference',
+        backref='job_references')
+    
+
 
