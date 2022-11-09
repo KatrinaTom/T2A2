@@ -41,12 +41,20 @@ def seed_db():
     # Create a new customer in the database
     new_customer = [
         User(
-        type='Customer',
-        f_name='Katrina',
-        l_name='Tom',
-        address='153 Test Road, Testville, QLD, 4000',
-        p_number='0400000001',
-        email='kattest@gmail.com',
+            type='Customer',
+            f_name='Katrina',
+            l_name='Tom',
+            address='153 Test Road, Testville, QLD, 4000',
+            p_number='0400000001',
+            email='kattest@gmail.com',
+        ),
+        User(
+            type='Customer',
+            f_name='Peter',
+            l_name='Smith',
+            address='78 Road rd, FakeStreet, QLD, 4000',
+            p_number='0400000002',
+            email='fakeyemail@gmail.com',
         )
     ]
     db.session.add_all(new_customer)
@@ -74,13 +82,22 @@ def seed_db():
     create_job = [
     Job_Reference(
             status = 'Quote',
-            # service_id = "1",
+            # service_id = Service[0].id,
             start_date = '2023-01-02',
             end_date = '2023-01-02',
             units_hours = '5',
             description = 'Build a small garden and plant with seasonable plants.',
-            user_id = new_customer[0].id
-        )
+            user = new_customer[0]
+        ),
+    Job_Reference(
+            status = 'Booked',
+            # service_id = Service[0].id,
+            start_date = '2023-05-02',
+            end_date = '2023-05-02',
+            units_hours = '2',
+            description = 'Mow lawn and trim edges.',
+            user = new_customer[1]
+        ),   
     ]
     db.session.add_all(create_job)
     db.session.commit()
