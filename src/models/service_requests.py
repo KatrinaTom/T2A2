@@ -12,5 +12,4 @@ class Service_Request(db.Model):
     # services_id = db.relationship('Service', back_populates='service_requests')
     # job_references_id = db.relationship('Job_Reference', back_populates='service_requests')
 
-    # This is a many to many relationship with services. 
-
+    # services = db.relationship("Services",backref="job_references")

@@ -23,7 +23,7 @@ def create_app():
     # Configuring the app
     app.config.from_object("config.app_config")
 
-    # Creating the database object. This is to use the our own ORM
+    # Creating the database object. This is to use our own ORM
     db.init_app(app)
 
     # Hooking up Marshmallow to the app

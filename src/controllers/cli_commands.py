@@ -55,27 +55,33 @@ def seed_db():
     # Create a landscaping service in the database
     new_service = [
         Service(
-        name='Lawn Care', 
-        description='Mowing and Fertilization',
-        price='80',
-        size='Small'
+            name='Seasonal Gardening',
+            description='Planting seasonable plants, fertilizing and garden tidy',
+            price='110',
+            size='Small'
+        ),
+        Service(
+            name='Lawn care',
+            description='Mowing, lawn edges and fertilizing',
+            price='120',
+            size='Small'
         )
     ]
     db.session.add_all(new_service)
     db.session.commit()
 
     # Create a job_reference 
-    create_job = Job_Reference(
-            user_id = '1',
-            status = 'Quote',
-            service_id = "1",
-            start_date = '27/11/2022',
-            end_date = '27/11/2022',
-            units_hours = '5',
-            description = 'Build a small garden and plant with seasonable plants.'
-    )
-    db.session.add_all(create_job)
-    db.session.commit()
+    # create_job = Job_Reference(
+    #         user_id = '1',
+    #         status = 'Quote',
+    #         service_id = "1",
+    #         start_date = '27/11/2022',
+    #         end_date = '27/11/2022',
+    #         units_hours = '5',
+    #         description = 'Build a small garden and plant with seasonable plants.'
+    # )
+    # db.session.add_all(create_job)
+    # db.session.commit()
 
     print("Tables successfully seeded")
 

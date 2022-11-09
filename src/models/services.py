@@ -11,8 +11,4 @@ class Service(db.Model):
     price = db.Column(db.Integer, nullable=False)
     size = db.Column(db.String(50), nullable=False)
 
-    job_references = db.relationship(
-        'job_reference',
-        backref='job_references')
-
 
