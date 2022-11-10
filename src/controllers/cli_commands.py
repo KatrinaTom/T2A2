@@ -4,6 +4,7 @@ from main import db, bcrypt
 from models.users import User
 from models.services import Service
 from models.job_references import Job_Reference
+from models.service_requests import Service_Request
 
 
 
@@ -78,29 +79,42 @@ def seed_db():
     db.session.add_all(new_service)
     db.session.commit()
 
+    # new_service_request = [
+    #     Service_Request(
+    #         service_requests= Service[0],
+    #         quanity ='1',
+    #     )
+        # Service_Request(
+        #     quanity ='2',
+        #     service_request= Service[0]
+        # )
+    # ]
+    # db.session.add_all(new_service_request)
+    # db.session.commit()
+
     # Create a job_reference 
-    create_job = [
-    Job_Reference(
-            status = 'Quote',
-            # service_id = Service[0].id,
-            start_date = '2023-01-02',
-            end_date = '2023-01-02',
-            units_hours = '5',
-            description = 'Build a small garden and plant with seasonable plants.',
-            user = new_customer[0]
-        ),
-    Job_Reference(
-            status = 'Booked',
-            # service_id = Service[0].id,
-            start_date = '2023-05-02',
-            end_date = '2023-05-02',
-            units_hours = '2',
-            description = 'Mow lawn and trim edges.',
-            user = new_customer[1]
-        ),   
-    ]
-    db.session.add_all(create_job)
-    db.session.commit()
+    # create_job = [
+    # Job_Reference(
+    #         status = 'Quote',
+    #         start_date = '2023-01-02',
+    #         end_date = '2023-01-02',
+    #         units_hours = '5',
+    #         description = 'Build a small garden and plant with seasonable plants.',
+    #         user = new_customer[0],
+            # service_order = Service[0]
+    #     ),
+    # Job_Reference(
+    #         status = 'Booked',
+    #         start_date = '2023-05-02',
+    #         end_date = '2023-05-02',
+    #         units_hours = '2',
+    #         description = 'Mow lawn and trim edges.',
+    #         user = new_customer[1],
+    #         # service_order = Service[1]
+    #     ),   
+    # ]
+    # db.session.add_all(create_job)
+    # db.session.commit()
 
     print("Tables successfully seeded")
 

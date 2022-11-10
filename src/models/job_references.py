@@ -15,7 +15,8 @@ class Job_Reference(db.Model):
     units_hours = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(128), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    # service_id = db.Column(db.Integer, db.ForeignKey('services.id'), nullable=False)
+    service_request_id = db.Column(db.Integer, db.ForeignKey('service_requests.id'), nullable=False)
 
-    user = db.relationship("User", back_populates="job_references")
-    # service = db.relationship("Service", back_populates="job_references")
+    user = db.relationship('User', back_populates='job_references')
+    service_order = db.relationship('Service_Request', back_populates='job_references')
+  

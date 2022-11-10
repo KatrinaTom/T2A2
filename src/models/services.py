@@ -11,5 +11,4 @@ class Service(db.Model):
     price = db.Column(db.Integer, nullable=False)
     size = db.Column(db.String(50), nullable=False)
 
-    # Get a list of all the job_references that reference services
-    # job_references = db.relationship('Job_Reference', back_populates='service', cascade='all, delete')
+    service_requests = db.relationship('Service_Request', back_populates='services')

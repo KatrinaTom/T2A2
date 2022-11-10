@@ -10,7 +10,7 @@ class Job_ReferenceSchema(ma.Schema):
 
     class Meta:
         # Fields to expose
-        fields = ("id", "users_id", "status", "start_date", "end_date", "units_hours", "description", "user")
+        fields = ("id", "users_id", "status", "start_date", "end_date", "units_hours", "description", "user", "service_order")
         ordered = True
 
 # Single job reference schema, when one job reference needs to be retrieved
