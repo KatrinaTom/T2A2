@@ -33,8 +33,8 @@ def create_job_reference():
             start_date = request.json['start_date'],
             end_date = request.json['end_date'],
             units_hours = request.json['units_hours'],
-            description = request.json['description']
-            # insert job_product
+            description = request.json['description'],
+            # job_request_id = request.json['job_request_id'] How to connect to the association_table
         )
 
         db.session.add(create_job)
@@ -67,3 +67,24 @@ def delete_one_job(id):
 #     search_job = db.session.scalars(stmt)
 #     for Job in search_job:
 #         print(search_job.__dict__)
+
+
+# 1. Create a new job (basic stuff)
+# 2. Then join the two tables together ()
+@job_bp.route('/create_new', methods=['POST'])
+def create_job():
+        create_job =  Job(
+            user_id = request.json['user_id'],
+            status = request.json['status'],
+            start_date = request.json['start_date'],
+            end_date = request.json['end_date'],
+            units_hours = request.json['units_hours'],
+            description = request.json['description'],
+
+    )
+        db.session.add(create_job)
+        db.session.commit()
+
+SELECT product_id, customer_id, 
+FROM product, sser
+WHERE product.product_id = 
