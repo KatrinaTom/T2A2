@@ -53,6 +53,14 @@ def seed_db():
             address='78 Road rd, FakeStreet, QLD, 4000',
             p_number='0400000002',
             email='fakeyemail@gmail.com',
+        ),
+        User(
+            type='Customer',
+            f_name='Rose',
+            l_name='Edwards',
+            address='119 Imaginary rd, Roseville, QLD, 4005',
+            p_number='0400000008',
+            email='rose@gmail.com',
         )
     ]
     db.session.add_all(new_customer)
@@ -76,6 +84,7 @@ def seed_db():
     db.session.add_all(new_product)
     db.session.commit()
 
+    # Create a new job in the database (requires user and product)
     new_jobs = [
         Job(
             status = 'Quote',
@@ -84,6 +93,14 @@ def seed_db():
             units_hours = '5',
             description = 'Build a small garden and plant with seasonable plants.',
             user = new_customer[0],
+        ),
+          Job(
+            status = 'Booked',
+            start_date = '2023-01-02',
+            end_date = '2023-01-02',
+            units_hours = '5',
+            description = 'Lawnmowing, with edge trimming.',
+            user = new_customer[1],
         )
     ]
     db.session.add_all(new_jobs)
@@ -91,30 +108,15 @@ def seed_db():
 
     # 1. declared a job j1
     j1 = new_jobs[0]
+    j2 = new_jobs[1]
     # created an array, accessing the product and storing in a variable named product. 
 
     # Adding product to the list of j1 products
     j1.products.append(new_product[0])
-    j1.products.append(new_product[1])
+    j2.products.append(new_product[1])
     
     db.session.commit()
-            
-
-    # # Create a job_reference 
-    # create_job = [
-    # Job(
-    #         s
-    #     ),
-    # Job(
-    #         status = 'Booked',
-    #         start_date = '2023-05-02',
-    #         end_date = '2023-05-02',
-    #         units_hours = '2',
-    #         description = 'Mow lawn and trim edges.',
-    #         user = new_customer[1],
-    #         # service_order = Service[1]
-    #     ),   
- 
+        
 
     print("Tables successfully seeded")
 
