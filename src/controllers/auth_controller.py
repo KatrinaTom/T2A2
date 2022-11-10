@@ -1,8 +1,7 @@
-from urllib import request
 from datetime import timedelta
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, request, abort
 from sqlalchemy.exc import IntegrityError
-from main import db, jwt, bcrypt
+from init import db, bcrypt
 from models.users import User
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
@@ -105,10 +104,10 @@ def delete_one_user(id):
         return {'error': f'User not found with id {id}'}, 404
 
     # Adding in redundancy to check that only an ADMIN user can perform this function
-    def authorize():
-        user_id = get_jwt_identity()
-        stmt = db.select(User).filter_by(id=user_id)
-        user = db.session.scalar(stmt)
-        if not user.is_admin:
-            abort(401)
+def authorize():
+    user_id = get_jwt_identity()
+    stmt = db.select(User).filter_by(id=user_id)
+    user = db.session.scalar(stmt)
+    if not user.is_admin:
+        abort(401)
 

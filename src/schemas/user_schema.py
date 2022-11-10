@@ -8,7 +8,7 @@ from marshmallow import fields, validates
 
 
 class UserSchema(ma.Schema):
-    job_reference = fields.List(fields.Nested('Job_ReferenceSchema', exclude=['user']))
+    job = fields.List(fields.Nested('JobSchema', exclude=['user']))
 
 
     class Meta:
@@ -16,10 +16,5 @@ class UserSchema(ma.Schema):
         fields = ("id", "type", "f_name", "l_name", "address", "p_number", "email", "password", "is_admin")
         ordered = True
 
-# Single job reference schema, when one job reference needs to be retrieved
-user_schema = UserSchema()
-
-# Multiple job reference schema, when more than one job reference needs to be retrieved
-users_schema = UserSchema(many=True)
 
 

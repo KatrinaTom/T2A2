@@ -1,19 +1,12 @@
 # List of all the imports. Main working file is main.py
+import os
 from flask import Flask
 from datetime import timedelta
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager, create_access_token
-import os
-
-
-# Create the database object
-db = SQLAlchemy()
-ma =  Marshmallow()
-bcrypt = Bcrypt()
-jwt = JWTManager()
-
+from init import db, ma, bcrypt, jwt
+from controllers.job_controller import job_bp
+from controllers.auth_controller import auth_bp
+from controllers.product_controller import product_bp
+from controllers.cli_commands import db_commands
 
 def create_app():
 
@@ -62,10 +55,14 @@ def create_app():
 
 
     # importing the controllers and acticate the blueprints
-    from controllers import registerable_controllers
+    # from controllers import registerable_controllers
 
-    for controller in registerable_controllers:
-        app.register_blueprint(controller)
+    # for controller in registerable_controllers:
+    #     app.register_blueprint(controller)
+    app.register_blueprint(job_bp)
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(product_bp)
+    app.register_blueprint(db_commands)
 
     return app
 

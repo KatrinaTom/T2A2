@@ -21,7 +21,7 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
     
     # Get a list of all the job_references that the user has 
-    job_references = db.relationship('Job_Reference', back_populates='user', cascade='all, delete')
+    jobs = db.relationship('Job', back_populates='user', cascade='all, delete')
 
     # Cascade = If user is deleted, then delete all their job_references
 

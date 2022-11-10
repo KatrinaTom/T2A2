@@ -2,22 +2,22 @@ from flask import Blueprint, jsonify, request
 from datetime import date
 from sqlalchemy.exc import IntegrityError
 from main import db
-from models.job_references import Job_Reference
-from schemas.job_reference_schema import Job_ReferenceSchema
+from models.job_product import Job, Product
+from schemas.job_schema import JobSchema
 
 
 # create controller
-job_reference_bp = Blueprint('job_reference', __name__, url_prefix='/job_reference')
+job_bp = Blueprint('job', __name__, url_prefix='/job')
 
 # Get all the job references available 
-@job_reference_bp.route('/jobs/', methods=['GET'])
+@job_bp.route('/jobs/', methods=['GET'])
 # @jwt_required()
-def get_job_references():
+def get_jobs():
     print("Hello Job Reference List")
-    stmt = db.select(Job_Reference)
-    # get all the jobs from the job_references database table
+    stmt = db.select(Job)
+    # get all the jobs from the jobs database table
     job_list = db.session.scalars(stmt)
-    return Job_ReferenceSchema(many=True).dump(job_list)
+    return JobSchema(many=True).dump(job_list)
     
 
 # Get only one job reference, you can use limit(1), but in this case I would be looking for a particular job with status eiter booked, or searching for a date.

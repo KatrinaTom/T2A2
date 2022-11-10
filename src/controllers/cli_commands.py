@@ -1,11 +1,8 @@
 from flask import Blueprint
 from datetime import date
-from main import db, bcrypt
+from init import db, bcrypt
 from models.users import User
-from models.services import Service
-from models.job_references import Job_Reference
-from models.service_requests import Service_Request
-
+from models.job_product import Product, Job
 
 
 db_commands = Blueprint('db', __name__)
@@ -62,48 +59,53 @@ def seed_db():
     db.session.commit()
 
     # Create a landscaping service in the database
-    new_service = [
-        Service(
+    new_product = [
+        Product(
             name='Seasonal Gardening',
             description='Planting seasonable plants, fertilizing and garden tidy',
             price='110',
             size='Small'
         ),
-        Service(
+        Product(
             name='Lawn care',
             description='Mowing, lawn edges and fertilizing',
             price='120',
             size='Small'
         )
     ]
-    db.session.add_all(new_service)
+    db.session.add_all(new_product)
     db.session.commit()
 
-    # new_service_request = [
-    #     Service_Request(
-    #         service_requests= Service[0],
-    #         quanity ='1',
-    #     )
-        # Service_Request(
-        #     quanity ='2',
-        #     service_request= Service[0]
-        # )
-    # ]
-    # db.session.add_all(new_service_request)
-    # db.session.commit()
+    new_jobs = [
+        Job(
+            status = 'Quote',
+            start_date = '2023-01-02',
+            end_date = '2023-01-02',
+            units_hours = '5',
+            description = 'Build a small garden and plant with seasonable plants.',
+            user = new_customer[0],
+        )
+    ]
+    db.session.add_all(new_jobs)
+    db.session.commit()
 
-    # Create a job_reference 
+    # 1. declared a job j1
+    j1 = new_jobs[0]
+    # created an array, accessing the product and storing in a variable named product. 
+
+    # Adding product to the list of j1 products
+    j1.products.append(new_product[0])
+    j1.products.append(new_product[1])
+    
+    db.session.commit()
+            
+
+    # # Create a job_reference 
     # create_job = [
-    # Job_Reference(
-    #         status = 'Quote',
-    #         start_date = '2023-01-02',
-    #         end_date = '2023-01-02',
-    #         units_hours = '5',
-    #         description = 'Build a small garden and plant with seasonable plants.',
-    #         user = new_customer[0],
-            # service_order = Service[0]
+    # Job(
+    #         s
     #     ),
-    # Job_Reference(
+    # Job(
     #         status = 'Booked',
     #         start_date = '2023-05-02',
     #         end_date = '2023-05-02',
@@ -112,9 +114,7 @@ def seed_db():
     #         user = new_customer[1],
     #         # service_order = Service[1]
     #     ),   
-    # ]
-    # db.session.add_all(create_job)
-    # db.session.commit()
+ 
 
     print("Tables successfully seeded")
 
