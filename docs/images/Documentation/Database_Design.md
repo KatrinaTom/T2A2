@@ -6,7 +6,7 @@
 * [Req 4: Benefits of a ORM](#req4)
 * [Req 5: API Endpoint Documentation](#req5)
 * [Req 6: ERD](#req6)
-* [Req 7: Third Parties](#req7)
+* [Req 7: Third Parties - Library](#req7)
 * [Req 8: Relationships to Models](#req8)
 * [Req 9: Database Relations](#req9)
 * [Req 10: Project Tracker](#req10)
@@ -116,9 +116,71 @@ In the above image, Crows Foot Notationw as used to demonstrate the relationship
 
 **Detail any third party services that your app will use**
 
-Detail link to the third party serivices used is under [Libraries](#library).
+**Flask**
 
-Including a short description as to the functionality and requirements of each service.
+Is a lightweight WSGI web application framework in Python. It is designed to make getting started very quickly and very easily.
+
+**Marshmallow**
+
+Is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.
+
+**Flask-Marshmallow** 
+
+Is a thin integration layer for Flask and marshmallow that adds additional features to marshmallow.
+
+**SQLAlchemy**
+
+Is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
+
+```pip3 install Flask-SQLAlchemy```
+
+Database connection
+
+```pip3 install psycopg2```
+
+Configure in main.py
+
+**Flask-SQLAlchemy**
+
+Is an extension for Flask that adds support for SQLAlchemy to your application. It aims to simplify using SQLAlchemy with Flask.
+
+**marshmallow-sqlalchemy**
+
+Flask-Marshmallow is an integration layer for Flask that will allow for object serialisation/deserialization library. Integrated with SQLAlchemy.
+
+```pip3 install flask-marshmallow```
+
+```pip install marshmallow-sqlalchemy```
+
+**pipenv**
+
+As the dependency manager. This is located in the .env.sample file as a reference to what is required.
+
+**Flask-Bcrypt** 
+
+A Flask extension that provides bcrypt hashing utilities for passwords.
+
+``pip install Flask-Bcrypt``
+
+**JWT Flask Extended**
+
+A Flask extenstion for JWT Manager (authentication), allowing for token creation and authentication.
+
+``pip install flask-jwt-extended``
+
+## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
+
+Create a virtual environment and activate it
+
+```python3 -m venv .venv && source .venv/bin/activate```
+
+Great a gitignore folder, main.py filder and a requirements.txt file
+
+Install Flask
+
+```pip3 install flask```
+
+Set up a basic Flask app in the main.py file and test that initially it works.
 
 # Requirement 8<a name="req8"></a>
 

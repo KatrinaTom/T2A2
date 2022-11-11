@@ -8,6 +8,15 @@ What you will need:
 * [Set Up](#setup)
 * [Create Database](#)
 
+
+
+
+1. [CRUD (Create, Read, Update, Delete)](#crud)
+2. [Authorisation and Authentication](#auth)
+3. Validation and Error Handling
+4. Testing
+5. [Deployment](#deployment)
+
 # Requirements<a name="requirements"></a>
 
 Also located under requirements.txt //
@@ -105,3 +114,52 @@ ADD PRIMARY KEY user_id;
 ```
 
 Example file of SQL [Landscaping_database](/docs/images/Documentation/landscape_db.sql)
+
+
+
+...
+
+## CRUD<a name="crud"></a>
+
+(Create, Read, Update, Delete)
+
+Thinking about the user and how they will interact with the database the tables **SERVICES** and **CUSTOMERS** need to have CRUD available.
+
+This is to allow the admin user to maintain the database.
+
+## Authorisation and Authentication<a name="auth"></a>
+
+Security is paramount in ensuring that the customers data is secure. Now that the database has endpoints that can be interacted with, it is critical to ensure that sql injection does not occur. This is already covered through the use of SQLAlchemy as the ORM, however now we need to consider other users who may have access to the database.
+
+This is achieved through the use of **JSON Web Tokens** (JWT).
+
+1. Additional fields added to USERS Table. is_admin and password so that a ADMIN user needs to be registered as an ADMIN user first.
+2. Create a new ADMIN user API endpoint. So that authorisation can be added to the CRUD operations
+3. Bearer Token is required to access the database. Expires in 1 day.
+4. Function to Authorise Delete function. Currently out of scope as there is only access to admin users. However good practice to learn additional authorisation.
+
+**Validation and Error Handling**
+
+Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application.
+
+1. Testing
+   
+..
+
+## Deployment<a name="deployment"></a>
+
+To access the "test" data for the database. The data is located under controllers/cli_commands.py
+
+1. Drop the tables to start with fresh data
+
+``flask db drop``
+
+2. Create the tables for the database
+
+``flask db create``
+
+3. This command add the data located under cli_commands.py to the database. This is test data.
+
+``flask db seed``
+
+** With the above commands, an ADMIN user user is created.
