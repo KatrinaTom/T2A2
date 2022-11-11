@@ -52,24 +52,28 @@ def delete_one_job(id):
 # 2. Find the product 
 # 3. Create the job - add the fields 
 # 4. Connect all these together to return the job, connected to the user and shows the product/s
+@job_bp.route('/', methods=['POST'])
+def create_job():
+    stmt = db.select(User).filter_by(id=request.json['user_id'])
+    user = db.session.scalar(stmt)
 
-@job_bp.route('/new/<int:user_id>', methods=['POST'])
-def create_job(user_id):
-    stmt = db.select(User).filter_by(id=user_id)
-    user = db.session.scalars(stmt)
+    stmt = db.select(Product).filter_by(id=request.json['product_id'])
+    product = db.session.scalar(stmt)
     if user:
-        create_job =  Job(
-            user_id = request.json['user_id'],
+        job = Job(
             status = request.json['status'],
             start_date = request.json['start_date'],
             end_date = request.json['end_date'],
             units_hours = request.json['units_hours'],
             description = request.json['description'],
         )
-        db.session.add(create_job)
+
+        user.jobs.append(job)
+        job.products.append(product)
+        # db.session.add(create_job)
         db.session.commit()
-        return JobSchema().dump(job_product), 201
+        return JobSchema().dump(job), 201
     else:
-        return{'error': f'{user_id} not found to create the job'}, 404
+        return{'error': f'{request.json["user_id"]} not found to create the job'}, 404
 
 

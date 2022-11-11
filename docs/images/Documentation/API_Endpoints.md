@@ -121,6 +121,14 @@ GET all jobs in the database
 
 ![Example of get all jobs](/docs/images/psql_database/get_jobs.png)
 
+GET a specific job. Requires the id of the job
+
+``localhost:8080/jobs/4``
+
+![Example of one specific job](/docs/images/psql_database/job_one.png)
+
+
+
 ___
 
 [Link to the top of the page](#api_top)
