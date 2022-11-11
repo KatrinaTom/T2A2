@@ -85,6 +85,6 @@ def create_job():
         db.session.add(create_job)
         db.session.commit()
 
-SELECT product_id, customer_id, 
-FROM product, sser
-WHERE product.product_id = 
+# SELECT product_id, customer_id, 
+# FROM product, sser
+# WHERE product.product_id = 

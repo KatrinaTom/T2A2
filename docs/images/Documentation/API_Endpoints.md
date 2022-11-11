@@ -12,32 +12,61 @@ Step 3: flask db seed
 
 # Endpoints that reference: USERS<a name="users"></a>
 
-Login as an ADMIN user 
+**POST /**
+
+LOGIN as an ADMIN user
+
 ``localhost:8080/auth/login``
 
+Request Example
+![Request Example](/docs/images/psql_database/auth_login.png)
 
-
-
-
-
-
+Response Example
+![Response Example](/docs/images/psql_database/auth_response.png)
 
 ** Above requires a Bearer Token for CRUD opertions. Login requires email, password and must be an Admin for security **
 
-Search for all customers (users) in the database // GET request
-``localhost:8080/auth/users``
+POST (create) a new ADMIN to the database
 
-Search for one customer(user) in the database // GET request
-``localhost:8080/auth/user/1``
+``localhost:8080/auth/register_admin/``
 
-Register a new customer (user), create a user in the database // POST request
+![Example of JSON request](/docs/images/psql_database/post_admin_new.png)
+
+
+POST (create) a new customer (user) in the database
+
 ``localhost:8080/auth/register``
 
-Update a customer (user) in the database // PUT or PATCH request
-``localhost:8080/auth/update_user/1``
+![Example of POST request for new user](/docs/images/psql_database/post_new_user.png)
+
+**GET /**
+
+SEARCH for all customers (users) in the database
+
+``localhost:8080/auth/users``
+
+Example of Bearer Token and response of users in the user database
+
+![Bearer Token Example](/docs/images/psql_database/bearer_token.png)
+
+SEARCH for one customer (user) in the database
+``localhost:8080/auth/user/1``
+
+!Example request of one user[](/docs/images/psql_database/get_user_id.png)
+
+**PUT or PATCH /**
+
+UPDATE a customer (user) in the database // PUT or PATCH request
+``localhost:8080/auth/user/6``
+
+![Update a user Example](/docs/images/psql_database/update_user.png)
+
+**DELETE /**
 
 Delete a customer (user) from the database // DELETE request
-``localhost:8080/auth/delete/1``
+``localhost:8080/auth/user/1``
+
+![Delete a user Example](/docs/images/psql_database/delete_user.png)
 
 ...
 

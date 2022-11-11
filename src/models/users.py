@@ -17,8 +17,8 @@ class User(db.Model):
     address = db.Column(db.String, nullable=False)
     p_number = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
-    password = db.Column(db.String, default=False)
-    is_admin = db.Column(db.Boolean, default=False)
+    password = db.Column(db.String)
+    is_admin = db.Column(db.Boolean)
     
     # Get a list of all the job_references that the user has 
     jobs = db.relationship('Job', back_populates='user', cascade='all, delete')

@@ -34,21 +34,21 @@ def get_users():
     return UserSchema(many=True, exclude=['password']).dump(users)    
 
 # Search for only one user in the database, but the url you need to know the user id
-@auth_bp.route('/user/<int:id>/', methods=['GET'])
+@auth_bp.route('/users/<int:id>/', methods=['GET'])
 @jwt_required()
 def get_one_user(id):
     # print("Hello One User")
     stmt = db.select(User).filter_by(id=id)
     user = db.session.scalar(stmt)
     if user:
-        return UserSchema().dump(user)
+        return UserSchema(exclude=['password']).dump(user)
     else:
         return {'error': f'User not found with id {id}'}, 404
 
-# Create a new user, register them in the database
-@auth_bp.route('/register/', methods=['POST'])
+# Create an ADMIN user
+@auth_bp.route('/register_admin/', methods=['POST'])
 @jwt_required()
-def auth_register():
+def auth_admin_register():
     try:
         user = User(
             type = request.json['type'],
@@ -67,8 +67,29 @@ def auth_register():
     except IntegrityError:
         return {'error': 'Email address already in use.'}, 409
 
+# Create a customer (user) in the database
+@auth_bp.route('/register/', methods=['POST'])
+@jwt_required()
+def auth_register():
+    try:
+        user = User(
+            type = request.json['type'],
+            f_name = request.json['f_name'],
+            l_name = request.json['l_name'],
+            address = request.json['address'],
+            p_number = request.json['p_number'],
+            email = request.json['email'],
+        )
+            
+        db.session.add(user)
+        db.session.commit()
+        return UserSchema().dump(user), 201
+    except IntegrityError:
+        return {'error': 'Email address already in use.'}, 409
+
+
 # Update a user in the database
-@auth_bp.route('/update_user/<int:id>', methods=['PUT', 'PATCH'])
+@auth_bp.route('user/<int:id>', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_one_user(id):
     stmt = db.select(User).filter_by(id=id)
@@ -84,12 +105,12 @@ def update_one_user(id):
         user.is_admin = request.json.get('is_admin') or user.is_admin
         
         db.session.commit()      
-        return UserSchema().dump(user)
+        return UserSchema(exclude=['password']).dump(user)
     else:
         return {'error': f'User can not be found with id {id}'}, 404
 
 # Delete a user from the database, but only an admin can do this.
-@auth_bp.route('/delete/<int:id>/', methods=['DELETE'])
+@auth_bp.route('/user/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_user(id):
     authorize()
