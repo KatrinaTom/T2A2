@@ -49,10 +49,11 @@ def delete_one_job(id):
 
 # Create a new job, need a user to add the job to. 
 # 1. Find the user 
-# 2. Find the product 
-# 3. Create the job - add the fields 
+# 2. Create the job - add the fields 
+# 3. Add product to the job
 # 4. Connect all these together to return the job, connected to the user and shows the product/s
 @job_bp.route('/', methods=['POST'])
+@jwt_required()
 def create_job():
     stmt = db.select(User).filter_by(id=request.json['user_id'])
     user = db.session.scalar(stmt)
@@ -70,7 +71,6 @@ def create_job():
 
         user.jobs.append(job)
         job.products.append(product)
-        # db.session.add(create_job)
         db.session.commit()
         return JobSchema().dump(job), 201
     else:

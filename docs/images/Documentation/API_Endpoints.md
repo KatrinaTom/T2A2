@@ -127,7 +127,11 @@ GET a specific job. Requires the id of the job
 
 ![Example of one specific job](/docs/images/psql_database/job_one.png)
 
+**POST /**
 
+POST a new job request with a user and a product
+
+![Example of a new job](/docs/images/psql_database/post_new_job.png)
 
 ___
 
