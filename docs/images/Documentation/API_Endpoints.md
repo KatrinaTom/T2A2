@@ -1,4 +1,4 @@
-# Endpoint Documentation
+# API Endpoint Documentation<a name="api_top"></a>
 
 Test data is located under Controllers/cli_commands.py
 
@@ -12,7 +12,7 @@ Step 3: flask db seed
 * [PRODUCTS](#products)
 * [JOB](#job)
 
-# Endpoints that reference: USERS<a name="users"></a>
+# API Endpoints that reference: USERS<a name="users"></a>
 
 **POST /**
 
@@ -70,7 +70,7 @@ Delete a customer (user) from the database // DELETE request
 
 ![Delete a user Example](/docs/images/psql_database/delete_user.png)
 
-# Endpoints that reference: PRODUCT<a name="products"></a>
+# API Endpoints that reference: PRODUCT<a name="products"></a>
 
 **GET /**
 
@@ -109,6 +109,9 @@ DELETE a service in the database
 
 ![Example of a product deleted](/docs/images/psql_database/delete_product.png)
 
-# Endpoints that reference: JOB<a name="job"></a>
+# API Endpoints that reference: JOB<a name="job"></a>
 
 Endpoints that reference **JOB_REFERENCE**
+
+
+[Link to the top of the page](#api_top)

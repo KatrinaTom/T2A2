@@ -27,6 +27,8 @@ Includes:
 * Requirements
 * Set Up
 * Database Creation
+  
+[API Endpoint Documentation](/docs/images/Documentation/API_Endpoints.md)
 
 [Software Development Plan](#sdp)
 
