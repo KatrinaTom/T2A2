@@ -9,7 +9,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 product_bp = Blueprint('product',__name__, url_prefix='/product')
 
 # Search for all available products in the database
-@product_bp.route('/available_products/', methods=['GET'])
+@product_bp.route('/', methods=['GET'])
 @jwt_required()
 def get_products():
     # print("Hello Product")
@@ -18,7 +18,7 @@ def get_products():
     return ProductSchema(many=True).dump(products)
 
 # # Search for only one type of product in the database, for the url you need to know the product id
-@product_bp.route('/available_product/<int:id>/', methods=['GET'])
+@product_bp.route('/<int:id>/', methods=['GET'])
 @jwt_required()
 def get_one_product(id):
     # print("Hello one type of product")
@@ -48,7 +48,7 @@ def product_add():
         return {'error': 'Product type already exists'}, 409
 
 # Update a product in the database
-@product_bp.route('/update_product/<int:id>', methods=['PUT', 'PATCH'])
+@product_bp.route('/<int:id>/', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_one_product(id):
     stmt = db.select(Product).filter_by(id=id)
@@ -64,11 +64,10 @@ def update_one_product(id):
         return {'error': f'The product can not be found with id {id}'}, 404
 
 # Delete a product from the database, but only an admin can do this.
-@product_bp.route('/delete/<int:id>/', methods=['DELETE'])
+@product_bp.route('/<int:id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_user(id):
-    authorize()
-    print("Come to delete a product")
+    # print("Delete a product")
 
     stmt = db.select(Product).filter_by(id=id)
     product = db.session.scalar(stmt)
@@ -79,10 +78,10 @@ def delete_one_user(id):
     else:
         return {'error': f'The product is not found with id {id}'}, 404
 
- # Adding in redundancy to check that only an ADMIN user can perform this function
-def authorize():
-    user_id = get_jwt_identity()
-    stmt = db.select(User).filter_by(id=user_id)
-    user = db.session.scalar(stmt)
-    if not user.is_admin:
-        abort(401)
+# Adding in redundancy to check that only an ADMIN user can perform this function
+# def authorize():
+#     user_id = get_jwt_identity()
+#     stmt = db.select(User).filter_by(id=user_id)
+#     user = db.session.scalar(stmt)
+#     if not user.is_admin:
+#         abort(401)

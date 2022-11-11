@@ -125,3 +125,7 @@ Using MVC (Model-View-Controller) architectural pattern, the next steps are to s
 # References<a name="reference"></a>
 
 Visual Paradigm, 2022, "What is Model-View and Control?", accessed 3 Nov 2022, <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-model-view-control-mvc/>
+
+Medium, 2020, "Flask with SQLAlchemy & Marshmallow", accessed 11 Nov 2022, <https://medium.com/craftsmenltd/flask-with-sqlalchemy-marshmallow-2ec34ecfd9d4>
+
+

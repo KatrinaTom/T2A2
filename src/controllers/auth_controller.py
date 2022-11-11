@@ -87,7 +87,6 @@ def auth_register():
     except IntegrityError:
         return {'error': 'Email address already in use.'}, 409
 
-
 # Update a user in the database
 @auth_bp.route('user/<int:id>', methods=['PUT', 'PATCH'])
 @jwt_required()
@@ -124,7 +123,7 @@ def delete_one_user(id):
     else:
         return {'error': f'User not found with id {id}'}, 404
 
-    # Adding in redundancy to check that only an ADMIN user can perform this function
+# Adding in redundancy to check that only an ADMIN user can perform this function
 def authorize():
     user_id = get_jwt_identity()
     stmt = db.select(User).filter_by(id=user_id)

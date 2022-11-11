@@ -9,6 +9,8 @@ Step 2: flask db create
 Step 3: flask db seed
 
 * [USERS](#users)
+* [PRODUCTS](#products)
+* [JOB](#job)
 
 # Endpoints that reference: USERS<a name="users"></a>
 
@@ -68,45 +70,45 @@ Delete a customer (user) from the database // DELETE request
 
 ![Delete a user Example](/docs/images/psql_database/delete_user.png)
 
-...
+# Endpoints that reference: PRODUCT<a name="products"></a>
 
-*As a user*
+**GET /**
 
-*I want to create a new service in the database*
+SEARCH for all available products
 
-*So that I can add maintain more services for my customers*
+``localhost:8080/product/``
 
+![Get Product Example](/docs/images/psql_database/get_products.png)
 
-Endpoints that reference **SERVICES:**
+SEARCH for ONE type of service
+``localhost:8080/product/1``
 
-Search for all available services // GET request
-``localhost:8080/service/available_services``
+![Example of a GET request of one product](/docs/images/psql_database/get_one_product.png)
 
-Search for one type of service // GET request
-``localhost:8080/service/available_service/2``
+**POST /**
 
-Add a new type of service to the database // POST request
-``localhost:8080/service/add``
+POST a new product to the database
 
-Update a service in the database // PUT or PATCH request
+``localhost:8080/product/add``
+
+![Example of posting a new product](/docs/images/psql_database/post_product.png)
+
+**PUT or PATCH /**
+
+UPDATE a service in the database
+
 ``localhost:8080/service/update_service/2``
 
-Delete a service in the database // DELETE request
-``localhost:8080/service/delete/1``
+![Example of a product update](/docs/images/psql_database/update_product.png)
 
-...
+**DELETE /**
 
-*As a user*
+DELETE a service in the database
 
-*I want to the ability to maintain a job reference*
+``localhost:8080/product/3``
 
-*So that I can create, track and delete job references*
+![Example of a product deleted](/docs/images/psql_database/delete_product.png)
+
+# Endpoints that reference: JOB<a name="job"></a>
 
 Endpoints that reference **JOB_REFERENCE**
-
-``localhost:8080/job_reference/jobs/`` // GET request
-
-
-Create a new job reference in the database // POST request
-``localhost:8080/job_reference/create``
-
