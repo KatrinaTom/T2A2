@@ -111,7 +111,16 @@ DELETE a service in the database
 
 # API Endpoints that reference: JOB<a name="job"></a>
 
-Endpoints that reference **JOB_REFERENCE**
+Endpoints that reference **JOBs**
 
+**GET /**
+
+GET all jobs in the database
+
+``localhost:8080/jobs``
+
+![Example of get all jobs](/docs/images/psql_database/get_jobs.png)
+
+___
 
 [Link to the top of the page](#api_top)

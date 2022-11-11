@@ -1,52 +1,40 @@
-from flask import Blueprint, jsonify, request
-from datetime import date
+from flask import Blueprint, request
 from sqlalchemy.exc import IntegrityError
 from main import db
 from models.job_product import Job, Product
+from models.users import User
 from schemas.job_schema import JobSchema
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from schemas.product_schema import ProductSchema
+from flask_jwt_extended import jwt_required
 
 
 # create controller
-job_bp = Blueprint('job', __name__, url_prefix='/job')
+job_bp = Blueprint('job', __name__, url_prefix='/jobs')
 
-# Get all the job references available 
-@job_bp.route('/jobs_all/', methods=['GET'])
-# @jwt_required()
+# Get all the jobs available in the database
+@job_bp.route('/', methods=['GET'])
+@jwt_required()
 def get_jobs():
-    print("Hello Job Reference List")
+    # print("Hello Job List")
     stmt = db.select(Job)
     # get all the jobs from the jobs database table
     job_list = db.session.scalars(stmt)
     return JobSchema(many=True).dump(job_list)
     
-
-# Get only one job reference, you can use limit(1), but in this case I would be looking for a particular job with status eiter booked, or searching for a date.
-
-# Create a new job reference
-@job_bp.route('/create/', methods=['POST'])
-def create_job_reference():
-    try:
-        create_job = Job(
-            user_id = request.json['user_id'],
-            status = request.json['status'],
-            start_date = request.json['start_date'],
-            end_date = request.json['end_date'],
-            units_hours = request.json['units_hours'],
-            description = request.json['description'],
-            # job_request_id = request.json['job_request_id'] How to connect to the association_table
-        )
-
-        db.session.add(create_job)
-        db.session.commit()
-
-        return JobSchema().dump(create_job), 201
-    except IntegrityError:
-        return {'error': 'Job Reference already exists'}, 409
-
+# Search for one job in the database
+@job_bp.route('/<int:id>/', methods=['GET'])
+@jwt_required()
+def get_one_job(id):
+    # print("Hello one type of product")
+    stmt = db.select(Job).filter_by(id=id)
+    job = db.session.scalar(stmt)
+    if job:
+        return JobSchema().dump(job)
+    else:
+        return {'error': f'Job is not found with the id {id}'}, 404
 
 # Delete a job from the database 
-@job_bp.route('/delete/<int:id>', methods=['DELETE'])
+@job_bp.route('/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_one_job(id):
 
@@ -55,24 +43,21 @@ def delete_one_job(id):
     if user:
         db.session.delete(user)
         db.session.commit()
-        return {'message': f"User '{user.f_name}' deleted successfully"}
+        return {'message': f'Job with {id} has been deleted successfully'}
     else:
-        return {'error': f'User not found with id {id}'}, 404
+        return {'error': f'Job not found with id {id}'}, 404
 
+# Create a new job, need a user to add the job to. 
+# 1. Find the user 
+# 2. Find the product 
+# 3. Create the job - add the fields 
+# 4. Connect all these together to return the job, connected to the user and shows the product/s
 
-# Search for all jobs where a condition is met
-# @job_bp('/search/', method=['GET'])
-# def search_job():
-#     stmt = db.select(Job).where(Job.status_id == "Booked")
-#     search_job = db.session.scalars(stmt)
-#     for Job in search_job:
-#         print(search_job.__dict__)
-
-
-# 1. Create a new job (basic stuff)
-# 2. Then join the two tables together ()
-@job_bp.route('/create_new', methods=['POST'])
-def create_job():
+@job_bp.route('/new/<int:user_id>', methods=['POST'])
+def create_job(user_id):
+    stmt = db.select(User).filter_by(id=user_id)
+    user = db.session.scalars(stmt)
+    if user:
         create_job =  Job(
             user_id = request.json['user_id'],
             status = request.json['status'],
@@ -80,11 +65,11 @@ def create_job():
             end_date = request.json['end_date'],
             units_hours = request.json['units_hours'],
             description = request.json['description'],
-
-    )
+        )
         db.session.add(create_job)
         db.session.commit()
+        return JobSchema().dump(job_product), 201
+    else:
+        return{'error': f'{user_id} not found to create the job'}, 404
 
-# SELECT product_id, customer_id, 
-# FROM product, sser
-# WHERE product.product_id = 
+

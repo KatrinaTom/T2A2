@@ -119,7 +119,7 @@ def delete_one_user(id):
     if user:
         db.session.delete(user)
         db.session.commit()
-        return {'message': f"User '{user.f_name}' deleted successfully"}
+        return {'message': f'User {user.f_name} deleted successfully'}
     else:
         return {'error': f'User not found with id {id}'}, 404
 

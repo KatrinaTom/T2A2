@@ -1,4 +1,4 @@
-# T2A2 - API Webserver Project
+# T2A2 - API Webserver Project<a name="toppage"></a>
 
 Project: An admin portal for a start up Landscaping Business.
 
@@ -130,4 +130,6 @@ Visual Paradigm, 2022, "What is Model-View and Control?", accessed 3 Nov 2022, <
 
 Medium, 2020, "Flask with SQLAlchemy & Marshmallow", accessed 11 Nov 2022, <https://medium.com/craftsmenltd/flask-with-sqlalchemy-marshmallow-2ec34ecfd9d4>
 
+___
 
+[Link to the top of the page](#toppage)
