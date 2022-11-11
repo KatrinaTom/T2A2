@@ -33,7 +33,6 @@ Includes:
 [Architecture](#mvc)
 
 ### Resources
-* Important Links
 * [References](#reference)
 
 ____________________________________

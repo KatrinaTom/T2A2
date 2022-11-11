@@ -1,4 +1,4 @@
-# Database Design
+# Database Design<a name="db"></a>
 
 * [Req 1: Identify the problem](#req1)
 * [Req 2: Why is it a problem?](#req2)
@@ -132,13 +132,11 @@ Is a thin integration layer for Flask and marshmallow that adds additional featu
 
 Is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
 
-```pip3 install Flask-SQLAlchemy```
+**Database connection**
 
-Database connection
+Psycopg2 connects the database (psql with sqlalchemy)
 
 ```pip3 install psycopg2```
-
-Configure in main.py
 
 **Flask-SQLAlchemy**
 
@@ -148,10 +146,6 @@ Is an extension for Flask that adds support for SQLAlchemy to your application. 
 
 Flask-Marshmallow is an integration layer for Flask that will allow for object serialisation/deserialization library. Integrated with SQLAlchemy.
 
-```pip3 install flask-marshmallow```
-
-```pip install marshmallow-sqlalchemy```
-
 **pipenv**
 
 As the dependency manager. This is located in the .env.sample file as a reference to what is required.
@@ -160,13 +154,9 @@ As the dependency manager. This is located in the .env.sample file as a referenc
 
 A Flask extension that provides bcrypt hashing utilities for passwords.
 
-``pip install Flask-Bcrypt``
-
 **JWT Flask Extended**
 
 A Flask extenstion for JWT Manager (authentication), allowing for token creation and authentication.
-
-``pip install flask-jwt-extended``
 
 ## Set Up (incl. Third Party Dependencies)<a name="setup"></a>
 
@@ -275,3 +265,7 @@ To understand the database, I looked at the customer experience and the ADMIN po
 ![Story Mapping](/docs/images/Story_Mapping.png)
 
 [Virtual WhiteBoard](https://miro.com/app/board/uXjVPVaYOmE=/)
+
+Any feedback, please don't hesitate to reach out. 
+
+[Link to the Top of Page](#db)

@@ -1,4 +1,4 @@
-# Getting Started
+# Getting Started<a name="top"></a>
 
 Build your own product and customer database.
 
@@ -163,3 +163,8 @@ To access the "test" data for the database. The data is located under controller
 ``flask db seed``
 
 ** With the above commands, an ADMIN user user is created.
+
+
+Thank you for making it to the bottom of the page.
+
+[Link to the top of the page](#top)
