@@ -11,7 +11,13 @@ What you will need:
 * [CRUD](#crud)
 * [Authorisation and Authentication](#auth)
 * Validation and Error Handling
-* Testing
+* [Testing](#test)
+
+Includes:
+
+* JSON payload for ADMIN user
+* JSON payload for JOB creation
+  
 
 
 # Requirements<a name="requirements"></a>
@@ -153,7 +159,67 @@ This is achieved through the use of **JSON Web Tokens** (JWT).
 
 Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application.
 
-# Testing
+# Testing<a name="test"></a>
+
+## Steps to Test ADMIN user
+
+1. Create Database
+2. flask db drop
+3. flask db create
+4. flask db seed
+5. localhost:8080/auth/login
+6. JSON Payload for a ADMIN user
+
+Otherwise you will see the error "Missing Authorization Header"
+
+![Missing Authorization Header](/docs/images/psql_database/missing_authorization.png)
+
+**POST** Request:
+
+Body, change to raw and drop down displays JSON.
+
+![ADMIN POST Request](/docs/images/psql_database/POST_Admin.png)
+
+{
+    
+    "email": "business_email@gmail.com",
+    "password": "batman"
+
+}
+
+Request Example of Token
+
+![Token Example](/docs/images/psql_database/Token.png)
+
+1. Copy the Token
+2. Select Authorization and from the Type drop down select **Bearer Token**
+3. Paste the token into the Token field
+
+![Copy Token to Authoization](/docs/images/psql_database/copy_token.png)
+
+10. Select Send again for your selected route
+11. Now you have Authorization
+
+
+## Steps to test JOB creation
+
+1. Authoization header has Bearer Token
+2. POST to localhost:8080/jobs/
+3. JSON Payload Example
+
+{
+    
+    "status": "Booked",
+    "start_date": "2023-01-02",
+    "end_date": "2023-01-02",
+    "units_hours": 2,
+    "description": "Small job, garden maintence and general clean up."
+
+}
+
+![Example of JSON payload](/docs/images/psql_database/JSON_create.png)
+
+____
 
 Thank you for making it to the bottom of the page.
 

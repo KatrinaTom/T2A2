@@ -127,6 +127,8 @@ GET a specific job. Requires the id of the job
 
 ![Example of one specific job](/docs/images/psql_database/job_one.png)
 
+![Example with user and product](/docs/images/psql_database/user_get_product.png)
+
 **POST /**
 
 POST a new job request with a user and a product
