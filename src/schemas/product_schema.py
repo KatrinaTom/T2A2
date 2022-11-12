@@ -1,6 +1,6 @@
 from main import ma
 from marshmallow import fields
-from marshmallow.validate import Length, OneOf, And, Regexp
+from marshmallow.validate import Length, And, Regexp
 
 # Create the user schema with Marshmallow, it will provide the serialization needed for converting the data into JSON
 

@@ -200,6 +200,9 @@ Request Example of Token
 10. Select Send again for your selected route
 11. Now you have Authorization
 
+## Steps to test a USER Creation
+
+Example of JSON payload to POST
 
 ## Steps to test JOB creation
 
@@ -208,13 +211,13 @@ Request Example of Token
 3. JSON Payload Example
 
 {
-    
-    "status": "Booked",
-    "start_date": "2023-01-02",
-    "end_date": "2023-01-02",
-    "units_hours": 2,
-    "description": "Small job, garden maintence and general clean up."
-
+   "user_id": "1",
+   "status": "Quote",
+   "start_date": "2023-01-02",
+   "end_date": "2023-01-02",
+   "units_hours": 2,
+   "description": "Small job, garden maintence and general clean up.",
+   "product_id": "2"
 }
 
 ![Example of JSON payload](/docs/images/psql_database/JSON_create.png)

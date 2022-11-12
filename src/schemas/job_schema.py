@@ -1,17 +1,14 @@
 from main import ma
 from marshmallow import fields, validates
 from marshmallow.validate import OneOf
+from models.job_product import VALID_STATUSES
 
 # Create the job_reference schema with Marshmallow, it will provide the serialization needed for converting the data into JSON
-
-VALID_STATUSES = ('Quote', 'Booked', 'In_Progress', 'Cancelled', 'Completed', 'Paid')
 
 class JobSchema(ma.Schema):
     user = fields.Nested('UserSchema', only=['f_name', 'l_name'])
     products = fields.List(fields.Nested('ProductSchema'))
-    
-
-    status = fields.String(load_default=VALID_STATUSES[0], validate=OneOf(VALID_STATUSES))
+    status = fields.String(required=True, validate=OneOf(VALID_STATUSES))
 
     class Meta:
         # Fields to expose

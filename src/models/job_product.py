@@ -1,5 +1,4 @@
 from main import db, ma
-from schemas.job_schema import VALID_STATUSES
 
 association_table = db.Table(
     "job_product",
@@ -8,12 +7,13 @@ association_table = db.Table(
     db.Column("product_id", db.ForeignKey("products.id"), primary_key=True),
 )
 
+VALID_STATUSES = ('Quote', 'Booked', 'In_Progress', 'Cancelled', 'Completed', 'Paid')
 
 class Job(db.Model):
     __tablename__ = 'jobs'
 
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.String(50), nullable=False, default=VALID_STATUSES[0])
+    status = db.Column(db.String(50), nullable=False)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date)
     units_hours = db.Column(db.Integer, nullable=False)

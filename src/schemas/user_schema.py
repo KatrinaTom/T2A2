@@ -1,14 +1,13 @@
 from main import ma
-from marshmallow import fields, validates
+from marshmallow.validate import OneOf
+from marshmallow import fields
+from models.users import VALID_TYPE
 
 # Create the user schema with Marshmallow, it will provide the serialization needed for converting the data into JSON
 
-
-    # type = fields.string(load_default=VALID_TYPE[0])
-
-
 class UserSchema(ma.Schema):
     job = fields.List(fields.Nested('JobSchema', exclude=['user']))
+    type = fields.String(required=True, validate=OneOf(VALID_TYPE))
 
 
     class Meta:

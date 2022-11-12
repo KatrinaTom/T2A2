@@ -1,11 +1,9 @@
 from main import db
 
-# Database model - Users Table
-
-# Note: "Type" refers to Employee or Customer
 # Password is only for Admin users to log into the database/ provide access to the database
 
-# VALID_TYPE = ('Employee', 'Customer') - default=VALID_TYPE[0]
+# Note: "Type" refers to Employee or Customer
+VALID_TYPE = ('Employee', 'Customer')
 
 class User(db.Model):
     __tablename__ = 'users'
