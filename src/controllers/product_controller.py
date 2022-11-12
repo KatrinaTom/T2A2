@@ -33,12 +33,13 @@ def get_one_product(id):
 @product_bp.route('/add/', methods=['POST'])
 @jwt_required()
 def product_add():
+    data = ProductSchema().load(request.json)
     try:
         product = Product(
-            name = request.json['name'],
-            description = request.json['description'],
-            price = request.json['price'],
-            size =request.json['size']
+            name = data['name'],
+            description = data['description'],
+            price = data['price'],
+            size = data['size']
         )
 
         db.session.add(product)
