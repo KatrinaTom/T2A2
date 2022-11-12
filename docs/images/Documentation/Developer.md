@@ -10,7 +10,7 @@ What you will need:
 * [Test Data](#test_data)
 * [CRUD](#crud)
 * [Authorisation and Authentication](#auth)
-* Validation and Error Handling
+* [Validation and Error Handling](#validation)
 * [Testing](#test)
 
 Includes:
@@ -155,9 +155,33 @@ This is achieved through the use of **JSON Web Tokens** (JWT).
 3. Bearer Token is required to access the database. Expires in 1 day.
 4. Function to Authorise Delete function. Currently out of scope as there is only access to admin users. However good practice to learn additional authorisation.
 
-# Validation and Error Handling
+# Validation and Error Handling<a name="validation"></a>
 
 Now that Endpoints exist, error handling needs to occur to ensure that if the wrong endpoint is hit, this is handled gracefully and displayed with JSON. This is to ensure consistency across the web application.
+
+**Error Handler**
+
+in main.py, the following error handlers where used. This is so that erros return where captured as JSON (to be consistant)
+
+- not found
+- unauthorized
+- key error
+- bad request
+- validation error
+
+**Marshmallow validation**
+
+Use of the following were used from Marshmallow
+
+- OneOf (Capture String fields) to match
+- Length (Handle an error when a title field is missing required length of characters)
+
+**Additional Error Handler**
+
+During error validation and Handling, there is an opportunity to coniniously improve. 
+
+1. Add validation for when a job is booked on the same date (rule: Can only book one job per day)
+2. Review validation of unique information about a customer such as, phone number duplicates, Address duplicates, Dupllicate Names and how best to handle this (eg. Mr Smith, and a Mr Smith)
 
 # Testing<a name="test"></a>
 
@@ -203,6 +227,15 @@ Request Example of Token
 ## Steps to test a USER Creation
 
 Example of JSON payload to POST
+
+{
+    "type":"Customer",
+    "f_name":"Tom",
+    "l_name":"Cruise",
+    "address":"153 Test Road, Testville, QLD, 4000",
+    "p_number":"0400000001",
+    "email": "cruise8@gmail.com"
+}
 
 ## Steps to test JOB creation
 
