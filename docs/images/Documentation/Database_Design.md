@@ -48,7 +48,6 @@ What does it need to do? Below is a list of requirements.
 * Search a job in the database
 * Select the type of job for the customer
 * Update a job (update/ cancel)
-* Track a jobs status
 
 From the above list there is alot complexity that would benefit with an api webserver.
 

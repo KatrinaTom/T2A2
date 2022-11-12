@@ -11,9 +11,11 @@ ____________________________________
 
 ## Table of Contents
 
-### Project Overview 
+### Project Requirements
 * [Introduction](#introduction)
 * [Brief](#brief)
+
+### Project Overview
 
 ### Project Planning
 With the use of Trello, the project is tracked in Phases
@@ -27,6 +29,7 @@ Includes:
 * Requirements
 * Set Up
 * Database Creation
+* Testing JSON payloads
   
 [API Endpoint Documentation](/docs/images/Documentation/API_Endpoints.md)
 
@@ -39,7 +42,7 @@ Includes:
 
 ____________________________________
 
-# Project Overview
+# Project Requirements
 
 ## Introduction<a name="introduction"></a>
 To solidify your knowledge of core web server concepts and show your ability to work with web servers at a fundamental level, you should be able to write code to create a functioning web API server.
@@ -51,6 +54,33 @@ Design a functioning web server in the relevant programming language. Your web s
 
 1. Planning
 2. Code
+
+# Project Overview 
+
+Welcome to the landscaping admin database.
+
+The business object of this database is to create a start up business focused on landscaping jobs.
+
+Requirements are:
+
+1. Securely store customer information in a User Table
+2. Only an Admin can access the database (requires a password and authorisation)
+3. Update/ create products available to the database in a Product Table
+4. Create a new job to track and keep a record of those jobs
+
+This is a simple database that only one Admin at the moment would access. However the ability to add more than one Admin is available.
+
+* The same auth/register route caters or Employees and Customers (field is type)
+
+In the future more Employees can access the database and that it how it has been created (through the use of MVC).
+
+This database was never designed for a customer to interact with it directly. This is purely a record keeping and tracking tool through the use of API Endpoints.
+
+**Future Expansion**
+
+1. Add a users table and split out employees
+2. Update the users table and split out Address (Normalisation of this field) So that marketing and tracking can be added for postcodes
+3. Update routes to include further search results (allow for tracking and reporting)
 
 # Design Requirements
 
