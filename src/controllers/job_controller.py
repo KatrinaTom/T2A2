@@ -33,20 +33,6 @@ def get_one_job(id):
     else:
         return {'error': f'Job is not found with the id {id}'}, 404
 
-# Delete a job from the database 
-@job_bp.route('/<int:id>', methods=['DELETE'])
-@jwt_required()
-def delete_one_job(id):
-
-    stmt = db.select(User).filter_by(id=id)
-    user = db.session.scalar(stmt)
-    if user:
-        db.session.delete(user)
-        db.session.commit()
-        return {'message': f'Job with {id} has been deleted successfully'}
-    else:
-        return {'error': f'Job not found with id {id}'}, 404
-
 # Create a new job, need a user to add the job to. 
 # 1. Find the user 
 # 2. Create the job - add the fields 
@@ -75,5 +61,38 @@ def create_job():
         return JobSchema().dump(job), 201
     else:
         return{'error': f'{request.json["user_id"]} not found to create the job'}, 404
+
+
+# Update a job in the database
+@job_bp.route('/<int:id>', methods=['PUT', 'PATCH'])
+@jwt_required()
+def update_job(id):
+    stmt = db.select(Job).filter_by(id=id)
+    job = db.session.scalar(stmt)
+    if job:
+        job.status = request.json.get('status') or job.status
+        job.start_date = request.json.get('start_date') or job.start_date
+        job.end_date = request.json.get('end_date') or job.end_date
+        job.units_hours = request.json.get('units_hours') or job.units_hours
+        job.description = request.json.get('description') or job.descriptionß
+        
+        db.session.commit()      
+        return JobSchema().dump(job)
+    else:
+        return {'error': f'User can not be found with id {id}'}, 404
+
+# Delete a job from the database 
+@job_bp.route('/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_one_job(id):
+
+    stmt = db.select(User).filter_by(id=id)
+    user = db.session.scalar(stmt)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return {'message': f'Job with id, {id} has been deleted successfully'}
+    else:
+        return {'error': f'Job not found with id {id}'}, 404
 
 

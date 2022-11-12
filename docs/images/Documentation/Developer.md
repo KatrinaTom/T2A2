@@ -16,7 +16,7 @@ What you will need:
 Includes:
 
 * JSON payload for ADMIN user
-* JSON payload for JOB creation
+* JSON payload for JOB create/ update
   
 
 
@@ -218,6 +218,32 @@ Request Example of Token
 }
 
 ![Example of JSON payload](/docs/images/psql_database/JSON_create.png)
+
+4. JSON Example to test update job
+JSON Payload to Update a JOB
+
+{
+
+    "id": 1,
+    "status": "Invoiced",
+    "start_date": "2023-01-02",
+    "end_date": "2023-01-02",
+    "units_hours": 5,
+    "description": "Build a small garden and plant with seasonable plants.",
+    "user": {
+        "f_name": "Katrina",
+        "l_name": "Tom"
+    },
+    "products": [
+        {
+            "id": 1,
+            "name": "Seasonal Gardening",
+            "description": "Planting seasonable plants, fertilizing and garden tidy",
+            "price": 110,
+            "size": "Small"
+        }
+    ]
+}
 
 ____
 

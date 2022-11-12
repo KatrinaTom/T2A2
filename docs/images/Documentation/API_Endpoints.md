@@ -95,9 +95,9 @@ POST a new product to the database
 
 **PUT or PATCH /**
 
-UPDATE a service in the database
+UPDATE a service in the database. Required the Product ID.
 
-``localhost:8080/service/update_service/2``
+``localhost:8080/product/1``
 
 ![Example of a product update](/docs/images/psql_database/update_product.png)
 
@@ -111,7 +111,7 @@ DELETE a service in the database
 
 # API Endpoints that reference: JOB<a name="job"></a>
 
-Endpoints that reference **JOBs**
+Endpoints that reference **JOBS**
 
 **GET /**
 
@@ -134,6 +134,14 @@ GET a specific job. Requires the id of the job
 POST a new job request with a user and a product
 
 ![Example of a new job](/docs/images/psql_database/post_new_job.png)
+
+**PUT or PATCH /**
+
+UPDATE a job. Requires a job_id
+
+``localhost:8080/jobs/1``
+
+![Example of a job updated](/docs/images/psql_database/update_job.png)
 
 ___
 
