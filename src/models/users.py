@@ -3,7 +3,6 @@ from main import db
 # Password is only for Admin users to log into the database/ provide access to the database
 
 # Note: "Type" refers to Employee or Customer
-VALID_TYPE = ('Employee', 'Customer')
 
 class User(db.Model):
     __tablename__ = 'users'

@@ -7,7 +7,6 @@ association_table = db.Table(
     db.Column("product_id", db.ForeignKey("products.id"), primary_key=True),
 )
 
-VALID_STATUSES = ('Quote', 'Booked', 'In_Progress', 'Cancelled', 'Completed', 'Paid')
 
 class Job(db.Model):
     __tablename__ = 'jobs'

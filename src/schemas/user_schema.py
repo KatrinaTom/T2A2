@@ -1,9 +1,10 @@
 from main import ma
 from marshmallow.validate import OneOf
 from marshmallow import fields
-from models.users import VALID_TYPE
 
 # Create the user schema with Marshmallow, it will provide the serialization needed for converting the data into JSON
+
+VALID_TYPE = ('Employee', 'Customer')
 
 class UserSchema(ma.Schema):
     job = fields.List(fields.Nested('JobSchema', exclude=['user']))
